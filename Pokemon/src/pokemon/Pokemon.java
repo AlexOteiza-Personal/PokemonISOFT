@@ -1,58 +1,119 @@
 package pokemon;
 import pokemon.imagedata.ImageData;
-
+/**
+ * 
+ * A Pokemon, containing its stats and image data.<br>
+ * Creation example:
+ * <blockquote>
+ * {@code Pokemon(PokemonData.Bulbasur,2);}
+ * </blockquote>
+ * Creates a new level 2 Bulbasaur<br>
+ * @author Alejandro
+ *
+ */
 public class Pokemon {
 	
-	private int id;
-	private String name;
-	private String nickname = null;
-	private PokemonType type;
-	private PokemonStats stats;
-	private ImageData imageData;
-	
-	
-	public Pokemon(int id,int level)
+	public PokemonData data;
+	public String nickname = null;
+	public PokemonStats stats;
+
+	/**
+	 * Creates a new Pokemon with a given enumerated value of PokemonData and the Pokemon's starting level<br>
+	 * @param data A PokemonData enumeration
+	 * @param level The pokemon starting level
+	 */
+	public Pokemon(PokemonData data,int level)
 	{
-		PokemonData data = PokemonList.getPokemonData(id, level);
-		this.id = data.getId();
-		this.name = data.getName();
-		this.type = data.getType();
-		this.stats = data.getStats();
-		this.imageData = data.getImageData();
+		this.data = data;
+		this.stats = data.getIniStats();
 	}
 	
+	//TODO obtener estadisticas para el siguiente nivel
+	/**
+	 * Returns the current stats at the given level
+	 * @param level The level which stats need to be calculated
+	 * @return a new PokemonStats object at the given level
+	 */
+	private PokemonStats getNewStats(int level)
+	{
+		return null;
+	}
+	
+	/**
+	 * @return a String contatining Pokemon's id, name and types
+	 */
+	@Override
 	public String toString()
 	{
-		return "Pokemon id:" + id + "\n" + "Nombre: " + name + "\nTipo: " +type.getType1() + " " + type.getType2()
-				+ "\nAtaque: "+ stats.getAttack()+"\nDefensa: "+ stats.getDefence() + "\nVelocidad: " + stats.getSpeed();
-				//+ "\nAtaque Esp: "+ stats.getSpAttack() +"\nDefensa Esp: " + stats.getSpDefence(); 
+		return "Pokemon id:" + data.getId() + "\n" + "Nombre: "+ data.getName() + "\nTipo: " + data.getType1() + "/" +
+				data.getType2();
 	}
 	
 	/*
 	 * Getters
 	 */
-	public int getId()
-	{
-		return this.id;
+	
+	/**
+	 * 
+	 * @return an integer containing Pokemon's
+	 */
+	/**
+	 * Returns the Pokemon's id
+	 * @return an integer containing the Pokemon's id
+	 */
+	public int getId() {
+		return this.data.getId();
 	}
-	public String getName()
-	{
-		return this.name;
+	/**
+	 * Returns the Pokemon's name
+	 * @return a String containing Pokemon's name
+	 */
+	public String getName() {
+		return this.data.getName();
 	}
-	public String getNickname()
-	{
-		return this.nickname;
+	/**
+	 * Returns the Pokemon's first type
+	 * @return a Type object containing Pokemon's first type
+	 */
+	public Type getType1() {
+		return this.data.getType1();
 	}
-	public PokemonType getPokemonType()
-	{
-		return this.type;
+	/**
+	 * Returns the Pokemon's second type
+	 * @return a Type object containing Pokemon's second type
+	 */
+	public Type getType2() {
+		return this.data.getType2();
 	}
-	public ImageData getImageData()
-	{
-		return this.imageData;
+	/**
+	 * Returns the Pokemon's image data
+	 * @return an ImageData object containing the Pokemon's image data 
+	 */
+	public ImageData getImageData() {
+		return this.data.getImageData();
 	}
+	/**
+	 * Returns the Pokemon's current stats
+	 * @return a PokemonStats object containing the Pokemon's current stats values
+	 */
+	public PokemonStats getStats() {
+		return this.stats;
+	}
+	public Type[] getPokemonType()
+	{
+		return new Type[] {this.data.getType1(),this.data.getType2()};
+	}
+
+	
+	
 	/*
 	 * Setters
+	 */
+	
+	/**
+	 * 
+	 * @param nickname Nuevo apodo
+	 * @return devuelve true si el nickname es valido, en caso contrario devuelve false
 	 */
 	public boolean setNickname(String nickname)
 	{
@@ -65,6 +126,7 @@ public class Pokemon {
 		}
 		
 	}
+
 }
 
 

@@ -1,5 +1,9 @@
 package pokemon;
-
+/**
+ * An enum containing the Type of Pokemon or Attack
+ * @author Alejandro
+ *
+ */
 public enum Type {
 	NORMAL,
 	FIRE,

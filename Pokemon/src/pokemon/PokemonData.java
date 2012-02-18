@@ -1,44 +1,87 @@
 package pokemon;
 
 import pokemon.imagedata.ImageData;
-
-public class PokemonData {
+/**
+ * Contains non-modificable data of the Pokemon
+ * @author Alejandro
+ * @see Pokemon
+ */
+public enum PokemonData {
+	Bulbasaur(1,"Bulbasaur",
+			Type.GRASS ,Type.POISON,
+			null
+			);
+	/** The Pokemon id */
 	private int id;
+	/** Pokemon name */
 	private String name;
-	private PokemonType type;
-	private PokemonStats stats;
-	private PokemonStatsGrow grow;
+	/** First Pokemon type */
+	private Type type1;
+	/** Second Pokemon type */
+	private Type type2;
+	/** Pokemon initial Stats */
+	private PokemonStats iniStats;
+	/** Pokemon Imagedata containing images */
 	private ImageData imageData;
-
-	protected PokemonData(int id, String name, PokemonType type, 
-			PokemonStats stats, ImageData imageData) {
+	
+	/**
+	 * Creates a new Pokemon data with the given values
+	 * @param id Pokemon id, an integer greater than 0
+	 * @param name Pokemon name  
+	 * @param type1 First Pokemon type
+	 * @param type2 Second Pokemon type
+	 * @param imageData Pokemon image data
+	 */
+	private PokemonData(int id, String name, Type type1, Type type2,
+			ImageData imageData) {
 		this.id = id;
 		this.name = name;
-		this.type = type;
-		this.stats = stats;
+		this.type1 = type1;
+		this.type2 = type2;
 		this.imageData = imageData;
 	}
 
+	/**
+	 * Returns the Pokemon's id
+	 * @return an integer containing the Pokemon's id
+	 */
 	public int getId() {
 		return id;
 	}
-
+	/**
+	 * Returns the Pokemon's name
+	 * @return a String containing Pokemon's name
+	 */
 	public String getName() {
 		return name;
 	}
-
-	public PokemonType getType() {
-		return type;
+	/**
+	 * Returns the Pokemon's first type
+	 * @return a Type object containing Pokemon's first type
+	 */
+	public Type getType1() {
+		return type1;
 	}
-
-	public PokemonStats getStats() {
-		return stats;
+	/**
+	 * Returns the Pokemon's second type
+	 * @return a Type object containing Pokemon's second type
+	 */
+	public Type getType2() {
+		return type2;
 	}
-
+	/**
+	 * Returns the Pokemon's image data
+	 * @return an ImageData object containing the Pokemon's image data 
+	 */
 	public ImageData getImageData() {
 		return imageData;
 	}
-	public PokemonStatsGrow getPokemonStatsGrow(){
-		return grow;
+	/**
+	 * Returns the Pokemon's initial stats
+	 * @return a PokemonStats object containing the Pokemon's initial stats values
+	 */
+	public PokemonStats getIniStats() {
+		return iniStats;
 	}
+
 }

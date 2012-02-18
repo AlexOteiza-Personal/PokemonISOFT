@@ -1,16 +1,22 @@
 package pokemon;
 
+/**
+ * Contains the Pokemon's stats used for battles
+ * @author Alejandro
+ *
+ */
 public class PokemonStats {
+	/** Pokemon's attack */
 	private int attack;
-	private int defence;
+	private int defense;
 	private int speed;
 	/*
 	private int spAttack;
 	private int spDefence;
 	*/
-	protected PokemonStats(int attack, int defence, int speed, int spAttack, int spDefence) {
+	protected PokemonStats(int attack, int defense, int speed){// int spAttack, int spDefence) {
 		this.attack = attack;
-		this.defence = defence;
+		this.defense = defense;
 		this.speed = speed;
 		/*
 		this.spAttack = spAttack;
@@ -21,14 +27,24 @@ public class PokemonStats {
 	/*
 	 * Getters
 	 */
+	/**
+	 * Returns the current attack value
+	 * @return the attack value
+	 */
 	public int getAttack() {
 		return attack;
 	}
-
-	public int getDefence() {
-		return defence;
+	/**
+	 * Returns the current defense value
+	 * @return the defense value
+	 */
+	public int getDefense() {
+		return defense;
 	}
-
+	/**
+	 * Returns the current speed value
+	 * @return the speed value
+	 */
 	public int getSpeed() {
 		return speed;
 	}
@@ -45,7 +61,7 @@ public class PokemonStats {
 
 	public int[] getStats()
 	{
-		return new int[] {attack,defence,speed};
+		return new int[] {attack,defense,speed};
 	}
 	/*
 	 * Setters
@@ -56,7 +72,7 @@ public class PokemonStats {
 	}
 
 	public void setDefence(int defence) {
-		this.defence = defence;
+		this.defense = defence;
 	}
 
 	public void setSpeed(int speed) {
