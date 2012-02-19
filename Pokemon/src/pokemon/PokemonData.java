@@ -12,6 +12,7 @@ import pokemon.imagedata.ImageInvalidSizeException;
 public enum PokemonData {
 	Bulbasaur(1,"Bulbasaur",
 			Type.GRASS ,Type.POISON,
+			new PokemonStats(6,6,6),
 			new ImageData(null,"/images/pokemon/front/001.png",null)
 			);
 	/** The Pokemon id */
@@ -36,11 +37,12 @@ public enum PokemonData {
 	 * @param imageData Pokemon image data
 	 */
 	private PokemonData(int id, String name, Type type1, Type type2,
-			ImageData imageData){
+			PokemonStats iniStats,ImageData imageData){
 		this.id = id;
 		this.name = name;
 		this.type1 = type1;
 		this.type2 = type2;
+		this.iniStats = iniStats;
 		this.imageData = imageData;
 	}
 
