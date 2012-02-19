@@ -1,6 +1,9 @@
 package pokemon;
 
+import java.io.IOException;
+
 import pokemon.imagedata.ImageData;
+import pokemon.imagedata.ImageInvalidSizeException;
 /**
  * Contains non-modificable data of the Pokemon
  * @author Alejandro
@@ -9,7 +12,7 @@ import pokemon.imagedata.ImageData;
 public enum PokemonData {
 	Bulbasaur(1,"Bulbasaur",
 			Type.GRASS ,Type.POISON,
-			null
+			new ImageData(null,"/images/pokemon/front/001.png",null)
 			);
 	/** The Pokemon id */
 	private int id;
@@ -33,7 +36,7 @@ public enum PokemonData {
 	 * @param imageData Pokemon image data
 	 */
 	private PokemonData(int id, String name, Type type1, Type type2,
-			ImageData imageData) {
+			ImageData imageData){
 		this.id = id;
 		this.name = name;
 		this.type1 = type1;

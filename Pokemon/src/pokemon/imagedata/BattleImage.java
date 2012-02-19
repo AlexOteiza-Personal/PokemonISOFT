@@ -11,12 +11,12 @@ public class BattleImage{
 	int width = 80;
 	int height = 80;
 	BufferedImage image;
-	public BattleImage(String filename) throws IOException, InvalidImageSizeException{
+	public BattleImage(String filename) throws IOException, ImageInvalidSizeException{
 		BufferedImage tmp = ImageIO.read(getClass().getResource(filename));
 		int tWidth = tmp.getWidth(null);
 		int tHeight = tmp.getHeight(null);
 		if(tWidth != width || tHeight != height)
-			throw new InvalidImageSizeException(tWidth,tHeight);
+			throw new ImageInvalidSizeException(tWidth,tHeight);
 		else
 			image = tmp;
 	}
