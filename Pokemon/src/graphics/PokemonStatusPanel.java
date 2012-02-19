@@ -25,6 +25,7 @@ public class PokemonStatusPanel extends JPanel {
 		// TODO Auto-generated method 
 		g.drawImage (pokemon.getImageData().getImgFront().getImage(),pokemonOrigin.x,pokemonOrigin.y, null);
 		g.drawString(pokemon.getType1().toString(), 50, 120);
+		g.drawString(pokemon.getType2().toString(), 50, 140);
 	}
 
 	
