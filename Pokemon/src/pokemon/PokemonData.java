@@ -10,11 +10,18 @@ import pokemon.imagedata.ImageInvalidSizeException;
  * @see Pokemon
  */
 public enum PokemonData {
-	Bulbasaur(1,"Bulbasaur",
-			Type.GRASS ,Type.POISON,
-			new PokemonStats(6,6,6),
-			new ImageData(null,"/images/pokemon/front/001.png",null)
-			);
+	Bulbasaur(1,"Bulbasaur",Type.GRASS ,Type.POISON,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/001.png","/images/pokemon/back/001.png")),
+	Ekans	 (2,"Ekans",Type.POISON,null,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/002.png","/images/pokemon/back/002.png")),
+	Diglett  (3,"Diglett",Type.GROUND,null,new PokemonStats(6,6,7),new ImageData(null,"/images/pokemon/front/003.png","/images/pokemon/back/003.png")),
+	Rattata  (4,"Rattata",Type.NORMAL,null,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/004.png","/images/pokemon/back/004.png")),
+	Weedle	 (5,"Weedle",Type.BUG,Type.POISON,new PokemonStats(6,5,6),new ImageData(null,"/images/pokemon/front/005.png","/images/pokemon/back/005.png")),
+	Abra	 (6,"Abra",Type.PSYCHIC,null,new PokemonStats(5,5,7),new ImageData(null,"/images/pokemon/front/006.png","/images/pokemon/back/006.png")),
+	Dodrio	 (7,"Dodrio",Type.NORMAL,Type.FLYING,new PokemonStats(7,6,7),new ImageData(null,"/images/pokemon/front/007.png","/images/pokemon/back/007.png")),
+	Pidgey	 (8,"Pidgey",Type.NORMAL,Type.FLYING,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/008.png","/images/pokemon/back/008.png")),
+	Arcanine (9,"Arcanine",Type.FIRE,null,new PokemonStats(7,6,7),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
+	Mew		 (10,"Mew",Type.PSYCHIC,null,new PokemonStats(7,7,7),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
+	
+	
 	/** The Pokemon id */
 	private int id;
 	/** Pokemon name */
