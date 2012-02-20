@@ -10,16 +10,16 @@ import pokemon.imagedata.ImageInvalidSizeException;
  * @see Pokemon
  */
 public enum PokemonData {
-	Bulbasaur(1,"Bulbasaur",Type.GRASS ,Type.POISON,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/001.png","/images/pokemon/back/001.png")),
-	Ekans	 (2,"Ekans",Type.POISON,null,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/002.png","/images/pokemon/back/002.png")),
-	Diglett  (3,"Diglett",Type.GROUND,null,new PokemonStats(6,6,7),new ImageData(null,"/images/pokemon/front/003.png","/images/pokemon/back/003.png")),
-	Rattata  (4,"Rattata",Type.NORMAL,null,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/004.png","/images/pokemon/back/004.png")),
-	Weedle	 (5,"Weedle",Type.BUG,Type.POISON,new PokemonStats(6,5,6),new ImageData(null,"/images/pokemon/front/005.png","/images/pokemon/back/005.png")),
-	Abra	 (6,"Abra",Type.PSYCHIC,null,new PokemonStats(5,5,7),new ImageData(null,"/images/pokemon/front/006.png","/images/pokemon/back/006.png")),
-	Dodrio	 (7,"Dodrio",Type.NORMAL,Type.FLYING,new PokemonStats(7,6,7),new ImageData(null,"/images/pokemon/front/007.png","/images/pokemon/back/007.png")),
-	Pidgey	 (8,"Pidgey",Type.NORMAL,Type.FLYING,new PokemonStats(6,6,6),new ImageData(null,"/images/pokemon/front/008.png","/images/pokemon/back/008.png")),
-	Arcanine (9,"Arcanine",Type.FIRE,null,new PokemonStats(7,6,7),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
-	Mew		 (10,"Mew",Type.PSYCHIC,null,new PokemonStats(7,7,7),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
+	Bulbasaur(1,"Bulbasaur",Type.GRASS ,Type.POISON,new PokemonStats(49,49,45),new ImageData(null,"/images/pokemon/front/001.png","/images/pokemon/back/001.png")),
+	Ekans	 (2,"Ekans",Type.POISON,null,new PokemonStats(60,44,55),new ImageData(null,"/images/pokemon/front/002.png","/images/pokemon/back/002.png")),
+	Diglett  (3,"Diglett",Type.GROUND,null,new PokemonStats(55,25,95),new ImageData(null,"/images/pokemon/front/003.png","/images/pokemon/back/003.png")),
+	Rattata  (4,"Rattata",Type.NORMAL,null,new PokemonStats(56,35,72),new ImageData(null,"/images/pokemon/front/004.png","/images/pokemon/back/004.png")),
+	Weedle	 (5,"Weedle",Type.BUG,Type.POISON,new PokemonStats(35,30,50),new ImageData(null,"/images/pokemon/front/005.png","/images/pokemon/back/005.png")),
+	Abra	 (6,"Abra",Type.PSYCHIC,null,new PokemonStats(20,15,90),new ImageData(null,"/images/pokemon/front/006.png","/images/pokemon/back/006.png")),
+	Dodrio	 (7,"Dodrio",Type.NORMAL,Type.FLYING,new PokemonStats(110,70,100),new ImageData(null,"/images/pokemon/front/007.png","/images/pokemon/back/007.png")),
+	Pidgey	 (8,"Pidgey",Type.NORMAL,Type.FLYING,new PokemonStats(45,40,56),new ImageData(null,"/images/pokemon/front/008.png","/images/pokemon/back/008.png")),
+	Arcanine (9,"Arcanine",Type.FIRE,null,new PokemonStats(110,80,95),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
+	Mew		 (10,"Mew",Type.PSYCHIC,null,new PokemonStats(100,100,100),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
 	
 	
 	/** The Pokemon id */
@@ -30,8 +30,8 @@ public enum PokemonData {
 	private Type type1;
 	/** Second Pokemon type */
 	private Type type2;
-	/** Pokemon initial Stats */
-	private PokemonStats iniStats;
+	/** Pokemon Base stats */
+	private PokemonStats baseStats;
 	/** Pokemon Imagedata containing images */
 	private ImageData imageData;
 	
@@ -44,12 +44,12 @@ public enum PokemonData {
 	 * @param imageData Pokemon image data
 	 */
 	private PokemonData(int id, String name, Type type1, Type type2,
-			PokemonStats iniStats,ImageData imageData){
+			PokemonStats baseStats,ImageData imageData){
 		this.id = id;
 		this.name = name;
 		this.type1 = type1;
 		this.type2 = type2;
-		this.iniStats = iniStats;
+		this.baseStats = baseStats;
 		this.imageData = imageData;
 	}
 
@@ -90,10 +90,10 @@ public enum PokemonData {
 	}
 	/**
 	 * Returns the Pokemon's initial stats
-	 * @return a PokemonStats object containing the Pokemon's initial stats values
+	 * @return a PokemonStats object containing the Pokemon's base stats values
 	 */
-	public PokemonStats getIniStats() {
-		return iniStats;
+	public PokemonStats getBaseStats() {
+		return baseStats;
 	}
 
 }

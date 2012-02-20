@@ -36,7 +36,11 @@ public class Pokemon {
 	 */
 	private PokemonStats getStats(int level)
 	{
-		return data.getIniStats();
+		PokemonStats baseStats = data.getBaseStats();
+		int newAttack = (int)(Math.floor(baseStats.getAttack()*level/50)+5);
+		int newDefense = (int)(Math.floor(baseStats.getDefense()*level/50)+5);
+		int newSpeed = (int)(Math.floor(baseStats.getSpeed()*level/50)+5);
+		return new PokemonStats(newAttack,newDefense,newSpeed);
 	}
 	
 	/**
