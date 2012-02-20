@@ -1,5 +1,7 @@
 package graphics;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,5 +26,7 @@ public class GameFrame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
 		setVisible(true);
+		
 	}
+	
 }

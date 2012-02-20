@@ -25,7 +25,7 @@ public class Pokemon {
 	public Pokemon(PokemonData data,int level)
 	{
 		this.data = data;
-		this.stats = data.getIniStats();
+		this.stats = getStats(level);
 	}
 	
 	//TODO obtener estadisticas para el siguiente nivel
@@ -34,9 +34,9 @@ public class Pokemon {
 	 * @param level The level which stats need to be calculated
 	 * @return a new PokemonStats object at the given level
 	 */
-	private PokemonStats getNewStats(int level)
+	private PokemonStats getStats(int level)
 	{
-		return null;
+		return data.getIniStats();
 	}
 	
 	/**
