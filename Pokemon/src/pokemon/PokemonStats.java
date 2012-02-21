@@ -7,6 +7,7 @@ package pokemon;
  */
 public class PokemonStats {
 	/** Pokemon's attack */
+	private int hp;
 	private int attack;
 	private int defense;
 	private int speed;
@@ -14,14 +15,11 @@ public class PokemonStats {
 	private int spAttack;
 	private int spDefence;
 	*/
-	protected PokemonStats(int attack, int defense, int speed){// int spAttack, int spDefence) {
+
+	protected PokemonStats(int attack, int defense, int speed){
 		this.attack = attack;
 		this.defense = defense;
 		this.speed = speed;
-		/*
-		this.spAttack = spAttack;
-		this.spDefence = spDefence;
-		*/
 	}
 
 	/*

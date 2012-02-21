@@ -9,8 +9,6 @@ public class Principal {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		Pokemon a = new Pokemon(PokemonData.Bulbasaur, 1);
-		System.out.println(a);
 		try
 		{
 			new GameFrame();

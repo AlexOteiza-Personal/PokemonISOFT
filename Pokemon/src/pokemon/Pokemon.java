@@ -13,9 +13,10 @@ import pokemon.imagedata.ImageData;
  */
 public class Pokemon {
 	
-	public PokemonData data;
-	public String nickname = null;
-	public PokemonStats stats;
+	private PokemonData data;
+	private String nickname = null;
+	private PokemonStats stats;
+	private int level;
 
 	/**
 	 * Creates a new Pokemon with a given enumerated value of PokemonData and the Pokemon's starting level<br>
@@ -25,7 +26,8 @@ public class Pokemon {
 	public Pokemon(PokemonData data,int level)
 	{
 		this.data = data;
-		this.stats = getStats(level);
+		this.stats = getNewStats(level);
+		this.level = level;
 	}
 	
 	//TODO obtener estadisticas para el siguiente nivel
@@ -34,12 +36,12 @@ public class Pokemon {
 	 * @param level The level which stats need to be calculated
 	 * @return a new PokemonStats object at the given level
 	 */
-	private PokemonStats getStats(int level)
+	private PokemonStats getNewStats(int level)
 	{
 		PokemonStats baseStats = data.getBaseStats();
-		int newAttack = (int)(Math.floor(baseStats.getAttack()*level/50)+5);
-		int newDefense = (int)(Math.floor(baseStats.getDefense()*level/50)+5);
-		int newSpeed = (int)(Math.floor(baseStats.getSpeed()*level/50)+5);
+		int newAttack = (int)((baseStats.getAttack()*level/50)+5);
+		int newDefense = (int)((baseStats.getDefense()*level/50)+5);
+		int newSpeed = (int)((baseStats.getSpeed()*level/50)+5);
 		return new PokemonStats(newAttack,newDefense,newSpeed);
 	}
 	
@@ -57,10 +59,7 @@ public class Pokemon {
 	 * Getters
 	 */
 	
-	/**
-	 * 
-	 * @return an integer containing Pokemon's
-	 */
+
 	/**
 	 * Returns the Pokemon's id
 	 * @return an integer containing the Pokemon's id
@@ -68,6 +67,10 @@ public class Pokemon {
 	public int getId() {
 		return this.data.getId();
 	}
+	public int getLevel() {
+		return level;
+	}
+
 	/**
 	 * Returns the Pokemon's name
 	 * @return a String containing Pokemon's name
@@ -129,6 +132,18 @@ public class Pokemon {
 			return true;
 		}
 		
+	}
+	public void levelUp() {
+		if(this.level == 100)
+			return;
+		this.level++;
+		this.stats = this.getNewStats(level);
+	}
+	@Deprecated
+	public void levelDown()
+	{
+		this.level--;
+		this.stats = this.getNewStats(level);
 	}
 
 }

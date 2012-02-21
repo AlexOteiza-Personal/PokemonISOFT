@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.betatesting.PokemonStatusTest;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -21,7 +23,7 @@ public class GameFrame extends JFrame{
 		} catch (IOException e) {
 			System.err.println("Error al abrir archivo de icono");
 		}
-		add(new PokemonStatusPanel(new Pokemon(PokemonData.Bulbasaur,2)));
+		add(new PokemonStatusTest());
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
