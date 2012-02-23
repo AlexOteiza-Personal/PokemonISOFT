@@ -1,5 +1,6 @@
 package pokemon.imagedata;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

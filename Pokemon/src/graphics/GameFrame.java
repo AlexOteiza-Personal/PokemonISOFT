@@ -2,6 +2,7 @@ package graphics;
 
 import graphics.betatesting.PokemonStatusTest;
 
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -27,6 +28,7 @@ public class GameFrame extends JFrame{
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
+		this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		setVisible(true);
 		
 	}

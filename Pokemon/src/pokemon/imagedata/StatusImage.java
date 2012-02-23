@@ -1,6 +1,6 @@
 package pokemon.imagedata;
 
 public class StatusImage {
-	int width = 80;
-	int height = 80;
+	int width = 32;
+	int height = 32;
 }
