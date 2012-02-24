@@ -24,6 +24,7 @@ import pokemon.PokemonData;
 import pokemon.PokemonStats;
 import pokemon.imagedata.BattleImage;
 import pokemon.imagedata.ImageInvalidSizeException;
+import utils.ImageUtils;
 
 
 public class PokemonStatusTest extends JPanel implements KeyListener{
@@ -42,14 +43,13 @@ public class PokemonStatusTest extends JPanel implements KeyListener{
 		}
 		this.setFocusable(true);
 		this.addKeyListener(this);
-		this.stats = ImageIO.read(getClass().getResource("/images/status_1x.PNG"));
+		this.stats = ImageUtils.getWdirImage("/images/status_1x.PNG");
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method 
 		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
-		g2.scale(2, 2);
+		
 		g.drawImage(this.stats, 0, 0, null);
 		Pokemon pokemon = pokemonList[pokemonIndex];
 		g.drawImage (pokemon.getImageData().getImgFront().getImage(),pokemonOrigin.x,pokemonOrigin.y, null);
