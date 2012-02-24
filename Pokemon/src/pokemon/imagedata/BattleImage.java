@@ -8,12 +8,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import sun.swing.*;
+import utils.ImageUtils;
 public class BattleImage{
 	int width = 80;
 	int height = 80;
 	BufferedImage image;
 	public BattleImage(String filename) throws IOException, ImageInvalidSizeException{
-		BufferedImage tmp = ImageIO.read(getClass().getResource(filename));
+		BufferedImage tmp = ImageUtils.getWdirImage(filename);
 		int tWidth = tmp.getWidth(null);
 		int tHeight = tmp.getHeight(null);
 		if(tWidth != width || tHeight != height)
