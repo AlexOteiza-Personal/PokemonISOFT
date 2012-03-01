@@ -22,7 +22,7 @@ import exceptions.ImageInvalidSizeException;
 import utils.ImageUtils;
 
 public class PokedexTest extends JPanel implements KeyListener {
-    private int xf = 12, yf = 20, id = 1, mirror = 1;
+    private int xf = 12, yf = 20, id = 0, mirror = 1;
     private Pokedex pokedexList;
     private Image stats, arrow;
     private int pokemonIndex = 0;
@@ -93,7 +93,7 @@ public class PokedexTest extends JPanel implements KeyListener {
 		repaint();
 	    }
 	} else if (e.getKeyCode() == KeyEvent.VK_UP && mirror == 1) {
-	    if (id > 9 || id <= 1) {
+	    if (id > 8 || id <= 0) {
 	    } else {
 		yf -= 14;
 		id--;
@@ -101,7 +101,7 @@ public class PokedexTest extends JPanel implements KeyListener {
 		repaint();
 	    }
 	} else if (e.getKeyCode() == KeyEvent.VK_DOWN && mirror == 1) {
-	    if (id >= 9 || id < 1) {
+	    if (id >= 8|| id < 0) {
 
 	    } else {
 		yf += 14;
