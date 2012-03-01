@@ -1,5 +1,6 @@
 package graphics;
 
+import graphics.betatesting.PokedexTest;
 import graphics.betatesting.PokemonStatusTest;
 
 import java.awt.Cursor;
@@ -28,7 +29,11 @@ public class GameFrame extends JFrame{
 		} catch (IOException e) {
 			System.err.println("Error al abrir archivo de icono");
 		}
-		add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
+		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
+		add(new PokedexTest());
+			
+		
+		
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
