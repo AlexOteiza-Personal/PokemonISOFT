@@ -23,9 +23,10 @@ public class Pokedex {
 	public static Pokedex getPokedex() {
 		return mPokedex;
 	}
-	
-
-	
+	public PokedexData[] getPokemonList()
+	{
+	    return pokemonList;
+	}
 	
 	
 }

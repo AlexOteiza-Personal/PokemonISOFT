@@ -1,5 +1,9 @@
 package graphics.betatesting;
 
+import exceptions.ImageInvalidSizeException;
+import exceptions.UnsupportedCharException;
+import fonts.BitmapFont;
+import fonts.DialogFont;
 import graphics.AlignedText;
 
 import java.awt.Font;
@@ -23,11 +27,11 @@ import pokemon.Pokemon;
 import pokemon.PokemonData;
 import pokemon.PokemonStats;
 import pokemon.imagedata.BattleImage;
-import pokemon.imagedata.ImageInvalidSizeException;
 import utils.ImageUtils;
 
 
 public class PokemonStatusTest extends JPanel implements KeyListener{
+    	private BitmapFont statusFont;
 	private static Point pokemonOrigin = new Point(20, 4);
 	private Pokemon[] pokemonList;
 	private Image stats;
@@ -52,11 +56,11 @@ public class PokemonStatusTest extends JPanel implements KeyListener{
 		
 		g.drawImage(this.stats, 0, 0, null);
 		Pokemon pokemon = pokemonList[pokemonIndex];
-		g.drawImage (pokemon.getImageData().getImgFront().getImage(),pokemonOrigin.x,pokemonOrigin.y, null);
+		g.drawImage (pokemon.getImageData().getImgFront().getImage(),20,4, null);
 		g.drawString(pokemon.getName(), 5, 10);
-		g.drawString("Tipo 1: "+pokemon.getType1().toString(), 20, 120);
-		if(pokemon.getType2() != null)
-			g.drawString("Tipo 2: "+pokemon.getType2().toString(), 20, 140);
+		//g.drawString("Tipo 1: "+pokemon.getType1().toString(), 20, 120);
+		//if(pokemon.getType2() != null)
+		//	g.drawString("Tipo 2: "+pokemon.getType2().toString(), 20, 140);
 		PokemonStats stats = pokemon.getStats();
 		statsText.drawString(stats.getAttack(),230, 33, g);
 		statsText.drawString(stats.getDefense(), 230, 46, g);
@@ -68,6 +72,7 @@ public class PokemonStatusTest extends JPanel implements KeyListener{
 		statsText.drawString(pokemon.getLevel(), 220, 478,g);
 		statsText.drawString(stats.getHp(), 210, 15,g);
 		g.drawString("Nivel: "+pokemon.getLevel(), 175, 99);
+		
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {

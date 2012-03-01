@@ -8,7 +8,8 @@ import pokemon.PokemonData;
 
 public class PlayerPokemonList {
     private Pokemon[] pokemonList = new Pokemon[6];
-    private static final PlayerPokemonList mPlayerPokemonList = new PlayerPokemonList(new Pokemon(PokemonData.Abra,1));
+    private static final PlayerPokemonList mPlayerPokemonList = 
+	    new PlayerPokemonList(new Pokemon[]{new Pokemon(PokemonData.Abra,1),new Pokemon(PokemonData.Arcanine,2)});
 
     private PlayerPokemonList(Pokemon pokemon){
 	this.pokemonList[0] = pokemon;
@@ -16,7 +17,7 @@ public class PlayerPokemonList {
     private PlayerPokemonList(Pokemon[] pokemonList){
 	if(pokemonList==null)
 	    return;
-	for (int i = 0; i < this.pokemonList.length; i++)
+	for (int i = 0; i < pokemonList.length; i++)
 	{
 	    this.pokemonList[i] = pokemonList[i];
 	}
