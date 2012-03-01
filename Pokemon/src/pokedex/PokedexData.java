@@ -22,6 +22,25 @@ public class PokedexData {
 	public void setCaptured(boolean captured) {
 		this.captured = captured;
 	}
+	public String getName() {
+		return name;
+	}
+	public pokemon.Type getType1() {
+		return type1;
+	}
+	public pokemon.Type getType2() {
+		return type2;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public boolean isSeen() {
+		return seen;
+	}
+	public boolean isCaptured() {
+		return captured;
+	}
+	
 }
 
 /*public enum PokedexData{

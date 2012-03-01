@@ -1,6 +1,10 @@
 package graphics;
 
+<<<<<<< HEAD
 import exceptions.ImageInvalidSizeException;
+=======
+import graphics.betatesting.PokedexTest;
+>>>>>>> bb2f936461604d9f0122f789da82b86bf1facf2d
 import graphics.betatesting.PokemonStatusTest;
 
 import java.awt.Cursor;
@@ -22,8 +26,22 @@ public class GameFrame extends JFrame{
 	BufferedImage icon;
 	public GameFrame() throws IOException, ImageInvalidSizeException{
 	    
+<<<<<<< HEAD
 		add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
 		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
+=======
+		try {
+			icon = ImageIO.read(getClass().getResource("/images/icon.png"));
+			setIconImage(icon);
+		} catch (IOException e) {
+			System.err.println("Error al abrir archivo de icono");
+		}
+		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
+		add(new PokedexTest());
+			
+		
+		
+>>>>>>> bb2f936461604d9f0122f789da82b86bf1facf2d
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
