@@ -18,145 +18,125 @@ import pokedex.PokedexData;
 import pokemon.Pokemon;
 import pokemon.PokemonData;
 import pokemon.PokemonStats;
-import pokemon.imagedata.ImageInvalidSizeException;
+import exceptions.ImageInvalidSizeException;
 import utils.ImageUtils;
 
 public class PokedexTest extends JPanel implements KeyListener {
-	private int xf = 12, yf = 20, id = 1, mirror = 1;
-	private Pokemon[] pokemonList;
-	private PokedexData [] pokedexList;
-	private Image stats, arrow;
-	private int pokemonIndex = 0;
-	private AlignedText statsText = new AlignedText(AlignedText.RIGHT_ALIGN);
+    private int xf = 12, yf = 20, id = 1, mirror = 1;
+    private Pokedex pokedexList;
+    private Image stats, arrow;
+    private int pokemonIndex = 0;
+    private AlignedText statsText = new AlignedText(AlignedText.RIGHT_ALIGN);
 
-	public PokedexTest() throws IOException, ImageInvalidSizeException {
-		pokemonList = new Pokemon[PokemonData.values().length];
-		int i = 0,z=0;
-		for (PokemonData pkdata : PokemonData.values()) {
-			pokemonList[i] = new Pokemon(pkdata, 1);
-			i++;
-		}
-	//	pokedexList = new PokedexData[];
-		
-		//for(PokedexData pokedexData: pokedexList ){
-		//	pokedexList[z]= new PokedexData(pokedexData.getName() ,pokedexData.getType1(),pokedexData.getType2(),pokedexData.getDescription());
-		//	z++;
-		//}
-		
-		
-		this.setFocusable(true);
-		this.addKeyListener(this);
-		this.stats = ImageUtils.getWdirImage("/images/fondoPokedex.png");
-		this.arrow = ImageUtils.getWdirImage("/images/cursorPokedex.png");
+    public PokedexTest(){
+	pokedexList = Pokedex.getPokedex();
+	int i = 0, z = 0;
+	// pokedexList = new PokedexData[];
+
+	// for(PokedexData pokedexData: pokedexList ){
+	// pokedexList[z]= new PokedexData(pokedexData.getName()
+	// ,pokedexData.getType1(),pokedexData.getType2(),pokedexData.getDescription());
+	// z++;
+	// }
+
+	this.setFocusable(true);
+	this.addKeyListener(this);
+	this.stats = ImageUtils.getWdirImage("/images/fondoPokedex.png");
+	this.arrow = ImageUtils.getWdirImage("/images/cursorPokedex.png");
+
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+	// TODO Auto-generated method
+	super.paintComponent(g);
+	Graphics2D g2 = (Graphics2D) g;
+	g2.scale(2, 2);// escala de la pantalla usar la misma
+	g.drawImage(this.stats, 0, 0, null);
+	if (mirror == 1) {
+	    int x = 60, y = 30;
+	    g.drawImage(this.arrow, xf, yf, null);
+	    // g.drawImage(pokemon.getImageData().getImgFront().getImage(),20,4,null);
+	    for (int i = 0; i <= 8; i++) {
+		g.drawString(pokedexList.getPokemon(i).getName(), x, y);
+		y = y + 14;
+	    }
+	    /*
+	     * g.drawString("Tipo 1: "+pokemon.getType1().toString(), 20, 120);
+	     * if(pokemon.getType2() != null)
+	     * g.drawString("Tipo 2: "+pokemon.getType2().toString(), 20, 140);
+	     */
+	} else {
+	    PokedexData pokemon = pokedexList.getPokemon(id);
+
+	    g.drawImage(pokemon.getImageData().getImgFront().getImage(), 140,
+		    12, null);
+	    g.drawString(pokemon.getName(), 15, 40);
+	    g.drawString(pokemon.getType1().toString(), 15, 60);
+	    if (pokemon.getType2() != null)
+		g.drawString(pokemon.getType2().toString(), 60, 60);
+	    g.drawString(pokemon.getDescription(), 15, 100);
 
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.scale(2, 2);// escala de la pantalla usar la misma
-		g.drawImage(this.stats, 0, 0, null);
-		if (mirror == 1) {
-			int x = 60, y = 30;
-			g.drawImage(this.arrow, xf, yf, null);
-			Pokemon pokemon = pokemonList[pokemonIndex];
-			// g.drawImage(pokemon.getImageData().getImgFront().getImage(),20,4,null);
-			for (int i = 0; i <= 8; i++) {
-				g.drawString(pokemonList[i].getName(), x, y);
-				y = y + 14;
-			}
-			/*
-			 * g.drawString("Tipo 1: "+pokemon.getType1().toString(), 20, 120);
-			 * if(pokemon.getType2() != null)
-			 * g.drawString("Tipo 2: "+pokemon.getType2().toString(), 20, 140);
-			 */
-		} else {
-			for(Pokemon pk:pokemonList){
-				if(pk.getId()==id){
-					g.drawImage(pk.getImageData().getImgFront().getImage(),140,12,null);
-					g.drawString(pk.getName(), 15, 40);
-					g.drawString(pk.getType1().toString(),15, 60);
-					if(pk.getType2()!=null){
-						g.drawString(pk.getType2().toString(),60, 60);
-					}
-				
-				}
-				
-			}
+    }
 
-		}
+    public void keyPressed(KeyEvent e) {
+	if (e.getKeyCode() == KeyEvent.VK_RIGHT && mirror == 1) {
+	    if (pokemonIndex < 8) {
+		pokemonIndex++;
+		repaint();
+	    }
+	} else if (e.getKeyCode() == KeyEvent.VK_LEFT && mirror == 1) {
+	    if (pokemonIndex > 0) {
+		pokemonIndex--;
+		repaint();
+	    }
+	} else if (e.getKeyCode() == KeyEvent.VK_UP && mirror == 1) {
+	    if (id > 9 || id <= 1) {
+	    } else {
+		yf -= 14;
+		id--;
+		System.out.println(id);
+		repaint();
+	    }
+	} else if (e.getKeyCode() == KeyEvent.VK_DOWN && mirror == 1) {
+	    if (id >= 9 || id < 1) {
+
+	    } else {
+		yf += 14;
+		id++;
+		System.out.println(id);
+		repaint();
+	    }
+	} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+	    if (mirror == 1) {
+		this.stats = ImageUtils
+			.getWdirImage("/images/DatosPokedex.png");
+		mirror++;
+		repaint();
+	    } else {
+		repaint();
+	    }
+
+	} else if (e.getKeyCode() == KeyEvent.VK_X) {
+	    if (mirror == 2) {
+		this.stats = ImageUtils
+			.getWdirImage("/images/fondoPokedex.png");
+		mirror--;
+		repaint();
+	    } else {
+		repaint();
+	    }
+
 	}
+    }
 
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT && mirror == 1) {
-			if (pokemonIndex < pokemonList.length - 1) {
-				pokemonIndex++;
-				repaint();
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT && mirror == 1) {
-			if (pokemonIndex > 0) {
-				pokemonIndex--;
-				repaint();
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_UP && mirror == 1) {
-			if (id > 9 || id <= 1) {
-			} else {
-				yf -= 14;
-				id--;
-				System.out.println(id);
-				repaint();
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN && mirror == 1) {
-			if (id >= 9 || id < 1) {
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
 
-			} else {
-				yf += 14;
-				id++;
-				System.out.println(id);
-				repaint();
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
-			try {
-				if(mirror==1){
-				this.stats = ImageUtils
-						.getWdirImage("/images/DatosPokedex.png");
-				mirror++;
-				repaint();
-				}
-				else{
-					repaint();
-				}
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
-
-		} else if (e.getKeyCode() == KeyEvent.VK_X) {
-			try {
-				if(mirror==2){
-				this.stats = ImageUtils
-						.getWdirImage("/images/fondoPokedex.png");
-				mirror--;
-				repaint();
-				}
-				else{
-					repaint();
-				}
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
-
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 }

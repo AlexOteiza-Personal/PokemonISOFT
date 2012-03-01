@@ -24,7 +24,7 @@ public class Principal {
      */
     public static void main(String[] args) throws IOException, ImageInvalidSizeException
     {
-	new GameFrame();
+	GameFrame gf = GameFrame.getGameFrame();
 	/*
 	try
 	{

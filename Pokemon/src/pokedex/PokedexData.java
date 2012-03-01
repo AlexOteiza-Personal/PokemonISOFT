@@ -1,17 +1,14 @@
 package pokedex;
 import pokemon.*;
+import pokemon.imagedata.ImageData;
 
 public class PokedexData {
-	private String name;
-	private pokemon.Type type1;
-	private pokemon.Type type2;
+	private PokemonData pokemonData;
 	private String description;
 	private boolean seen;
 	private boolean captured;
-	public PokedexData(String pNombre,pokemon.Type pTipo1,pokemon.Type pTipo2,String pDescripcion){
-		this.name=pNombre;
-		this.type1=pTipo1;
-		this.type2=pTipo2;
+	public PokedexData(PokemonData pokemonData,String pDescripcion){
+		this.pokemonData = pokemonData;
 		this.description=pDescripcion;
 		this.seen=false;
 		this.captured=false;
@@ -23,13 +20,16 @@ public class PokedexData {
 		this.captured = captured;
 	}
 	public String getName() {
-		return name;
+		return pokemonData.getName();
 	}
 	public pokemon.Type getType1() {
-		return type1;
+		return pokemonData.getType1();
 	}
 	public pokemon.Type getType2() {
-		return type2;
+		return pokemonData.getType2();
+	}
+	public ImageData getImageData(){
+	    	return pokemonData.getImageData();
 	}
 	public String getDescription() {
 		return description;

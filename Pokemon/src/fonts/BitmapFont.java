@@ -45,34 +45,36 @@ public class BitmapFont {
      */
     public BitmapFont(BufferedImage bitmapImage, FontChar[] charmap,
 	    int charsizex, int charsizey)
-	    throws ImageInvalidSizeException
+
     {
 	if (bitmapImage.getHeight(null) % charsizey != 0
-		|| bitmapImage.getWidth(null) % charsizex != 0)
-	{
-	    throw new ImageInvalidSizeException(bitmapImage.getWidth(null),
-		    bitmapImage.getHeight(null), charsizex, charsizey);
+		|| bitmapImage.getWidth(null) % charsizex != 0) {
+	    try {
+		throw new ImageInvalidSizeException(bitmapImage.getWidth(null),
+			bitmapImage.getHeight(null), charsizex, charsizey);
+	    } catch (ImageInvalidSizeException e) {
+		e.printStackTrace();
+	    }
 	}
-	
+
 	this.charsizex = charsizex;
 	this.charsizey = charsizey;
 	setSubimages(bitmapImage, new CharMap(charmap));
     }
 
-    private void setSubimages(BufferedImage bitmapImage,CharMap charmap)
-    {
+    private void setSubimages(BufferedImage bitmapImage, CharMap charmap) {
 	imagesAlphabet = new HashMap<Character, Image>(charmap.getSize());
 	int imagenumber = 0;
 	int hImagenum = bitmapImage.getWidth() / charsizex;
 	int vImagenum = bitmapImage.getHeight() / charsizey;
 
-	for (int i = 0; i < vImagenum; i++)
-	{
-	    for (int j = 0; j < hImagenum && imagenumber < charmap.getSize(); j++, imagenumber++)
-	    {
+	for (int i = 0; i < vImagenum; i++) {
+	    for (int j = 0; j < hImagenum && imagenumber < charmap.getSize(); j++, imagenumber++) {
 		FontChar c = charmap.getFontChar(imagenumber);
-		imagesAlphabet.put(c.getChar(),
-			    (Image) bitmapImage.getSubimage(j * charsizex, i* charsizey, c.getWidth(), charsizey));
+		imagesAlphabet.put(
+			c.getChar(),
+			(Image) bitmapImage.getSubimage(j * charsizex, i
+				* charsizey, c.getWidth(), charsizey));
 	    }
 
 	}
@@ -84,25 +86,18 @@ public class BitmapFont {
 
 	int currentx = x;
 	int currenty = y;
-	for (int i = 0; i < text.length(); i++)
-	{
-	    if (text.charAt(i) == '\n')
-	    {
+	for (int i = 0; i < text.length(); i++) {
+	    if (text.charAt(i) == '\n') {
 		currenty += charsizey;
 		currentx = x;
-	    }
-	    else
-	    {
-		try
-		{
+	    } else {
+		try {
 		    Image character = imagesAlphabet.get(text.charAt(i));
 		    if (character == null)
 			throw new UnsupportedCharException(text.charAt(i));
 		    g.drawImage(character, currentx, currenty, null);
 		    currentx += character.getWidth(null);
-		}
-		catch (UnsupportedCharException ex)
-		{
+		} catch (UnsupportedCharException ex) {
 		    ex.printStackTrace();
 		}
 	    }

@@ -7,25 +7,25 @@ public class Pokedex {
 	private static Pokedex mPokedex = new Pokedex();
 	private PokedexData pokemonList[]=
 	{
-			new PokedexData("Bulbasaur",Type.GRASS ,Type.POISON,"For some time after its birh, it grows by gaining nourishment from the seed o its back"),
-			new PokedexData("Ekans",Type.POISON,null,"It sneaks through grass without making a soun and strikes unsuspecting prey from behind"),
-			new PokedexData("Diglett",Type.GROUND,null,"A Pokemon that lives underground. Because of its dark habitat, it is repelled by bright sunlight"),
-			new PokedexData("Rattata",Type.NORMAL,null,"Cautious in the extreme, its hardy vitality lets it live in any kind of environement"),
-			new PokedexData("Weedle",Type.BUG,Type.POISON,"It eats its wight in leaves every day. It fends off attackers with the needle on its head"),
-			new PokedexData("Abra",Type.PSYCHIC,null,"Using its psychic power is such a strain on its brain that it needs to sleep for 18 hours a day"),
-			new PokedexData("Dodrio",Type.NORMAL,Type.FLYING,"Wen dodudo envolves into this odd breed, one of its heads splits into two. It runs at nearly 40 mph"),
-			new PokedexData("Pidgey",Type.NORMAL,Type.FLYING,"It is docile and prefers to avoid conflict. If disturbed however, it can ferociously strike back"),
-			new PokedexData("Arcanine",Type.FIRE,null,"Its proud an regal apperance has captured the hearts of people since long ago"),
-			new PokedexData("Mew",Type.PSYCHIC,null,"Because it can use all kinds of moves, many scientists belive Mew to be te ancestor of Pokemon"),
+			new PokedexData(PokemonData.Bulbasaur,"Este Pokémon nace con una semilla en el lomo.\n Con el tiempo, la semilla brota."),
+			new PokedexData(PokemonData.Ekans ,"Es fácil encontrarlo en praderas y zonas similares.\n A este Pokémon le basta con sacar la lengua para detectar el peligro."),
+			new PokedexData(PokemonData.Diglett,"Este Pokémon se entierra a gran profundidad,\n pero como levanta tierra al cavar, es fácil localizarlo."),
+			new PokedexData(PokemonData.Rattata,"Tiene unos largos y afilados colmillos que no dejan de crecer. Le resultan muy útiles para destruir cosas."),
+			new PokedexData(PokemonData.Weedle,"Suele habitar bosques y praderas. Tiene un afilado y venenoso aguijón de unos 5 cm encima de la cabeza."),
+			new PokedexData(PokemonData.Abra,"Duerme 18 horas al día y mientras lo hace es capaz de usar una serie de poderes extrasensoriales."),
+			new PokedexData(PokemonData.Dodrio,"Pertenece a una rara especie difícil de encontrar. Las tres cabezas simbolizan la alegría, la tristeza y la ira."),
+			new PokedexData(PokemonData.Pidgey,"A este Pokémon no le gusta luchar. Suele permanecer escondido en zonas de hierba alta. Se alimenta de pequeños insectos."),
+			new PokedexData(PokemonData.Arcanine,"Un Pokémon muy admirado desde la antigüedad por su belleza. Corre ágilmente como si tuviera alas."),
+			new PokedexData(PokemonData.Mew,"Varios científicos lo consideran el antecesor de los Pokémon porque usa todo tipo de movimientos."),
 	
 	};
 	private Pokedex() {}
 	public static Pokedex getPokedex() {
 		return mPokedex;
 	}
-	public PokedexData[] getPokemonList()
+	public PokedexData getPokemon(int index)
 	{
-	    return pokemonList;
+	    return pokemonList[index];
 	}
 	
 	

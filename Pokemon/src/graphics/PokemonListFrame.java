@@ -29,10 +29,10 @@ public class PokemonListFrame extends JPanel {
     private BufferedImage pokemonBox;
     private BufferedImage pokemonBoxFill;
     private int pokemonIndex;
-    public PokemonListFrame(PlayerPokemonList playerPokemonList) throws IOException, ImageInvalidSizeException
+    public PokemonListFrame()
     {
 	this.pokemonIndex = 0;
-	this.playerPokemonList = playerPokemonList;
+	this.playerPokemonList = PlayerPokemonList.getPlayerpokemonlist();
 	this.background = ImageUtils.getWdirImage("/images/pokemonlist/background.png");
 	this.firstPokemonBox = ImageUtils.getWdirImage("/images/pokemonlist/boxBig.png");
 	this.pokemonBox = ImageUtils.getWdirImage("/images/pokemonlist/box.png");
