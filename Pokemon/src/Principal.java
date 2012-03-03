@@ -22,7 +22,7 @@ public class Principal {
      * @throws IOException
      * @throws ImageInvalidSizeException 
      */
-    public static void main(String[] args) throws IOException, ImageInvalidSizeException
+    public static void main(String[] args)
     {
 	GameFrame gf = GameFrame.getGameFrame();
 	/*

@@ -48,7 +48,7 @@ public class PokemonListFrame extends JPanel {
 	g2.scale(2, 2);
         g.drawImage(background, 0, 0, null);
         g.drawImage(firstPokemonBox,8,26,null);
-        pokemonNameFont.drawString(g, 30, 38, playerPokemonList.getPokemon(0).getName());
+        pokemonNameFont.drawString(g,playerPokemonList.getPokemon(0).getName() ,30, 38);
         
         g.drawImage(pokemonBox, 96, 10, null);
         if(playerPokemonList.getPokemon(1)!= null)
@@ -56,7 +56,7 @@ public class PokemonListFrame extends JPanel {
             int x=97,y=11;
             Pokemon pokemon = playerPokemonList.getPokemon(1);
             g.drawImage(pokemonBoxFill, x, y, null);
-            pokemonNameFont.drawString(g, x+22, y+5, pokemon.getName());
+            pokemonNameFont.drawString(g, pokemon.getName(),x+22,y+5);
         }
         g.drawImage(pokemonBox, 96, 34, null);
         if(playerPokemonList.getPokemon(2)!= null)
@@ -64,7 +64,7 @@ public class PokemonListFrame extends JPanel {
             int x=97,y=35;
             Pokemon pokemon = playerPokemonList.getPokemon(2);
             g.drawImage(pokemonBoxFill, x, y, null);
-            pokemonNameFont.drawString(g, x+22, y+5, pokemon.getName());
+            pokemonNameFont.drawString(g, pokemon.getName(),x+22,y+5);
         }
         g.drawImage(pokemonBox, 96, 58, null);
         if(playerPokemonList.getPokemon(3)!= null)
@@ -72,7 +72,7 @@ public class PokemonListFrame extends JPanel {
             int x=97,y=59;
             Pokemon pokemon = playerPokemonList.getPokemon(3);
             g.drawImage(pokemonBoxFill, x, y, null);
-            pokemonNameFont.drawString(g, x+22, y+5, pokemon.getName());
+            pokemonNameFont.drawString(g, pokemon.getName(),x+22,y+5);
         }
         g.drawImage(pokemonBox, 96, 82, null);
         if(playerPokemonList.getPokemon(4)!= null)
@@ -80,7 +80,7 @@ public class PokemonListFrame extends JPanel {
             int x=97,y=83;
             Pokemon pokemon = playerPokemonList.getPokemon(4);
             g.drawImage(pokemonBoxFill, x, y, null);
-            pokemonNameFont.drawString(g, x+22, y+5, pokemon.getName());
+            pokemonNameFont.drawString(g, pokemon.getName(),x+22,y+5);
         }
         g.drawImage(pokemonBox, 96, 106, null);
         if(playerPokemonList.getPokemon(5)!= null)
@@ -88,8 +88,7 @@ public class PokemonListFrame extends JPanel {
             int x=97,y=107;
             Pokemon pokemon = playerPokemonList.getPokemon(5);
             g.drawImage(pokemonBoxFill, x, y, null);
-            pokemonNameFont.drawString(g, x+22, y+5, pokemon.getName());
-            g.drawImage(pokemonBoxFill, 97, 107, null);
+            pokemonNameFont.drawString(g, pokemon.getName(),x+22,y+5);
         } 
 	
         

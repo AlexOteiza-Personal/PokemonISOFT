@@ -22,7 +22,6 @@ public enum PokemonData {
 	Arcanine (9,"ARCANINE",Type.FIRE,null,new PokemonStats(90,110,80,95),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
 	Mew	 (10,"MEW",Type.PSYCHIC,null,new PokemonStats(100,100,100,100),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
 	
-	
 	/** The Pokemon id */
 	private int id;
 	/** Pokemon name */
