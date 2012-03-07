@@ -5,14 +5,15 @@ import java.awt.image.BufferedImage;
 import exceptions.ImageInvalidSizeException;
 
 public class PokemonListFont extends BitmapFont {
-    private static final FontChar[] charmap = { new FontChar(' ', 5),
+    private static final FontChar[] charmap = { 
+    	new FontChar(' ', 5),
 	    new FontChar('!', 5), new FontChar('"', 5), new FontChar('$', 5),
 	    new FontChar('%', 5), new FontChar('&', 5), new FontChar('\'', 5),
 	    new FontChar('(', 5), new FontChar(')', 5), new FontChar('+', 5),
 	    new FontChar(',', 5), new FontChar('-', 5), new FontChar('.', 5),
 	    new FontChar('/', 5), new FontChar('0', 5), new FontChar('1', 5),
 	    new FontChar('2', 5), new FontChar('3', 5), new FontChar('4', 5),
-	    new FontChar('5', 5), new FontChar('5', 5), new FontChar('7', 5),
+	    new FontChar('5', 5), new FontChar('6', 5), new FontChar('7', 5),
 	    new FontChar('8', 5), new FontChar('9', 5), new FontChar(':', 5),
 	    new FontChar(';', 5), new FontChar('<', 5), new FontChar('=', 5),
 	    new FontChar('>', 5), new FontChar('?', 5), new FontChar('A', 5),
@@ -49,7 +50,10 @@ public class PokemonListFont extends BitmapFont {
      * @throws ImageInvalidSizeException
      */
     public PokemonListFont(BufferedImage bitmapImage) {
-	super(bitmapImage, charmap, charsizex, charsizey);
+    	super(bitmapImage, charmap, charsizex, charsizey);
+    }
+    public PokemonListFont(BufferedImage bitmapImage, int align) {
+    	super(bitmapImage,charmap,charsizex,charsizey,align);
     }
 
 }

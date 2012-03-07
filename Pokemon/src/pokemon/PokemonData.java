@@ -20,7 +20,7 @@ public enum PokemonData {
 	Dodrio	 (7,"DODRIO",Type.NORMAL,Type.FLYING,new PokemonStats(60,110,70,100),new ImageData(null,"/images/pokemon/front/007.png","/images/pokemon/back/007.png")),
 	Pidgey	 (8,"PIDGEY",Type.NORMAL,Type.FLYING,new PokemonStats(40,45,40,56),new ImageData(null,"/images/pokemon/front/008.png","/images/pokemon/back/008.png")),
 	Arcanine (9,"ARCANINE",Type.FIRE,null,new PokemonStats(90,110,80,95),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
-	Mew	 (10,"MEW",Type.PSYCHIC,null,new PokemonStats(100,100,100,100),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
+	Mew	     (10,"MEW",Type.PSYCHIC,null,new PokemonStats(100,100,100,100),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
 	
 	/** The Pokemon id */
 	private int id;
@@ -59,6 +59,21 @@ public enum PokemonData {
 	 */
 	public int getId() {
 		return id;
+	}
+	public String getIdString() {
+		int ciphers = 3;
+		int tmpid = id;
+		String idString = "";
+		while(tmpid !=0)
+		{
+			ciphers--;
+			tmpid = tmpid/10;
+		}
+		for (int i = 0; i < ciphers; i++) {
+			idString += "0";
+		}
+		idString += id;
+		return idString;
 	}
 	/**
 	 * Returns the Pokemon's name

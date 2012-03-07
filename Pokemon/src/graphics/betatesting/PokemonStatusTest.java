@@ -37,7 +37,7 @@ public class PokemonStatusTest extends JPanel implements KeyListener{
 	private Image stats;
 	private int pokemonIndex = 0;
 	private AlignedText statsText = new AlignedText(AlignedText.RIGHT_ALIGN);
-	public PokemonStatusTest() throws IOException, ImageInvalidSizeException {
+	public PokemonStatusTest(){
 		pokemonList = new Pokemon[PokemonData.values().length];
 		int i=0;
 		for(PokemonData pkdata: PokemonData.values())

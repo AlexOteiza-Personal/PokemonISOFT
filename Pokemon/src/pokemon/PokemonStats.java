@@ -17,12 +17,16 @@ public class PokemonStats {
      * private int spAttack; private int spDefence;
      */
 
+    protected PokemonStats(int level, PokemonStats baseStats)
+    {
+    	this.setNewStats(level, baseStats);
+    }
     protected PokemonStats(int hp, int attack, int defense, int speed)
     {
-	this.hp = hp;
-	this.attack = attack;
-	this.defense = defense;
-	this.speed = speed;
+    	this.hp = hp;
+    	this.attack = attack;
+    	this.defense = defense;
+    	this.speed = speed;
     }
 
     public int getHp()
@@ -87,21 +91,6 @@ public class PokemonStats {
     /*
      * Setters
      */
-
-    public void setAttack(int attack)
-    {
-	this.attack = attack;
-    }
-
-    public void setDefence(int defence)
-    {
-	this.defense = defence;
-    }
-
-    public void setSpeed(int speed)
-    {
-	this.speed = speed;
-    }
     /*
      * @Deprecated public void setSpAttack(int spAttack) { this.spAttack =
      * spAttack; }
@@ -109,5 +98,21 @@ public class PokemonStats {
      * @Deprecated public void setSpDefence(int spDefence) { this.spDefence =
      * spDefence; }
      */
+    // TODO obtener estadisticas para el siguiente nivel
+    /**
+     * Returns the current stats at the given level
+     * 
+     * @param level
+     *            The level which stats need to be calculated
+     * @return a new PokemonStats object at the given level
+     */
+    public void setNewStats(int level, PokemonStats baseStats)
+    {
+    	this.hp = (int) (((baseStats.getHp() + 50) * level / 50) + 10);
+    	this.attack = (int) ((baseStats.getAttack() * level / 50) + 5);
+    	this.defense = (int) ((baseStats.getDefense() * level / 50) + 5);
+    	this.speed = (int) ((baseStats.getSpeed() * level / 50) + 5);
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package graphics;
 
 import exceptions.ImageInvalidSizeException;
+import graphics.betatesting.FontTest;
 import graphics.betatesting.PokedexTest;
 import graphics.betatesting.PokemonStatusTest;
 
@@ -14,17 +15,17 @@ import player.PlayerPokemonList;
 import utils.ImageUtils;
 
 public class GameFrame extends JFrame{
-    	private static GameFrame mGameFrame = new GameFrame();
+    private static GameFrame mGameFrame = new GameFrame();
 	BufferedImage icon;
 	JPanel currentRoom;
 	private GameFrame(){
-	    
-		currentRoom = new PokemonListFrame();
+		//currentRoom = new PokemonStatusTest();
+		currentRoom = new PokedexTest();
 		add(currentRoom);
 		icon = ImageUtils.getWdirImage("/images/icon.png");
 		setIconImage(icon);
 		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
-		add(new PokedexTest());
+		add(currentRoom);
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640,480);
