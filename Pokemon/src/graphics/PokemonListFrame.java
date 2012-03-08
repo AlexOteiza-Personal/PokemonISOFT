@@ -24,7 +24,7 @@ import fonts.PokemonListFont;
 import player.PlayerPokemonList;
 import pokemon.Pokemon;
 
-public class PokemonListFrame extends JPanel implements KeyListener{
+public class PokemonListFrame extends JPanel implements Room{
 	private BitmapFont pokemonNameFont;
 	private int pokemonIndex;
 	private int pokemonListSize;
@@ -47,8 +47,13 @@ public class PokemonListFrame extends JPanel implements KeyListener{
 	private BufferedImage textBox;
 	private BufferedImage arrow;
 
-	public PokemonListFrame() {
-		this.pokemonIndex = 0;
+	public PokemonListFrame()
+	{
+		this(0);
+	}
+	
+	public PokemonListFrame(int index) {
+		this.pokemonIndex = index;
 		this.selected = false;
 		this.boxSelectIndex = 0;
 		this.playerPokemonList = PlayerPokemonList.getPlayerpokemonlist();
@@ -68,7 +73,6 @@ public class PokemonListFrame extends JPanel implements KeyListener{
 		this.arrow = ImageUtils.getWdirImage("/images/pokemonlist/arrow.png");	
 		this.pokemonNameFont = new PokemonListFont(ImageUtils.getWdirImage("/images/font_pokemonlist.png"));
 		
-		this.addKeyListener(this);
 		this.setFocusable(true);
 	}
 
@@ -187,8 +191,7 @@ public class PokemonListFrame extends JPanel implements KeyListener{
 		
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyAction(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if(keyCode == KeyEvent.VK_UP)
 		{
@@ -258,11 +261,12 @@ public class PokemonListFrame extends JPanel implements KeyListener{
 			{
 				if(boxSelectIndex == SELECT_SHOWDATA)
 				{
-					//TODO
+					GameFrame gf = (GameFrame)getTopLevelAncestor();
+					gf.gotoPokemonStatus(playerPokemonList.getPokemon(pokemonIndex),pokemonIndex);
 				}
 				if(boxSelectIndex == SELECT_SWITCH)
 				{
-					
+					//TODO
 				}
 				if(boxSelectIndex == SELECT_EXIT)
 				{
@@ -292,11 +296,5 @@ public class PokemonListFrame extends JPanel implements KeyListener{
 		}
 		System.out.println("Pokemon Index: "+pokemonIndex+"\nBox Index: "+boxSelectIndex);
 	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {}
-
-	@Override
-	public void keyTyped(KeyEvent e) {}
 
 }

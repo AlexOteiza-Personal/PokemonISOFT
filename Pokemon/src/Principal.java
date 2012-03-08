@@ -4,6 +4,7 @@ import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -25,7 +26,9 @@ public class Principal {
     public static void main(String[] args)
     {
 	GameFrame gf = GameFrame.getGameFrame();
-	/*
+    	//ArrayList<Pokemon> pkl = new ArrayList<Pokemon>();
+    	//pkl.add(null);
+    	/*
 	try
 	{
 	    

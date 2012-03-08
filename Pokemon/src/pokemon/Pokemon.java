@@ -1,5 +1,6 @@
 package pokemon;
 
+import pokemon.attacks.AttackList;
 import pokemon.imagedata.ImageData;
 
 /**
@@ -16,6 +17,7 @@ public class Pokemon {
 	private PokemonData data;
 	private String nickname = null;
 	private PokemonStats stats;
+	private AttackList attacks;
 	private int level;
 
 	/**
@@ -32,6 +34,7 @@ public class Pokemon {
 		this.data = data;
 		this.level = level;
 		this.stats = new PokemonStats(level, data.getBaseStats());
+		this.attacks = new AttackList(data.getLearnAttackList(), level);
 	}
 
 	/**

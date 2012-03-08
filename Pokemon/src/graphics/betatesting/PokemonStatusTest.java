@@ -5,6 +5,8 @@ import exceptions.UnsupportedCharException;
 import fonts.BitmapFont;
 import fonts.DialogFont;
 import graphics.AlignedText;
+import graphics.GameFrame;
+import graphics.Room;
 
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -30,32 +32,26 @@ import pokemon.imagedata.BattleImage;
 import utils.ImageUtils;
 
 
-public class PokemonStatusTest extends JPanel implements KeyListener{
+public class PokemonStatusTest extends JPanel implements Room{
     	private BitmapFont statusFont;
 	private static Point pokemonOrigin = new Point(20, 4);
-	private Pokemon[] pokemonList;
 	private Image stats;
 	private int pokemonIndex = 0;
+	private Pokemon pokemon;
+	private int index;
 	private AlignedText statsText = new AlignedText(AlignedText.RIGHT_ALIGN);
-	public PokemonStatusTest(){
-		pokemonList = new Pokemon[PokemonData.values().length];
-		int i=0;
-		for(PokemonData pkdata: PokemonData.values())
-		{
-			pokemonList[i] = new Pokemon(pkdata,1);
-			i++;
-		}
+	public PokemonStatusTest(Pokemon pokemon,int index){
+		this.index = index;
+		this.pokemon = pokemon;
 		this.setFocusable(true);
-		this.addKeyListener(this);
 		this.stats = ImageUtils.getWdirImage("/images/status_1x.PNG");
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method 
 		super.paintComponent(g);
-		
+		((Graphics2D)g).scale(2, 2);
 		g.drawImage(this.stats, 0, 0, null);
-		Pokemon pokemon = pokemonList[pokemonIndex];
 		g.drawImage (pokemon.getImageData().getImgFront().getImage(),20,4, null);
 		g.drawString(pokemon.getName(), 5, 10);
 		//g.drawString("Tipo 1: "+pokemon.getType1().toString(), 20, 120);
@@ -74,38 +70,19 @@ public class PokemonStatusTest extends JPanel implements KeyListener{
 		g.drawString("Nivel: "+pokemon.getLevel(), 175, 99);
 		
 	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+
+	public void keyAction(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		System.out.println("wtf");
+		if(keyCode == 'X')
 		{
-			if(pokemonIndex < pokemonList.length-1)
-			{
-				pokemonIndex++;
-				repaint();
-			}
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			if(pokemonIndex > 0)
-			{
-				pokemonIndex--;
-				repaint();
-			}
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			pokemonList[pokemonIndex].levelUp();
-			repaint();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			pokemonList[pokemonIndex].levelDown();
-			repaint();
+			GameFrame gf = (GameFrame)getTopLevelAncestor();
+			gf.goBack();
 		}
 	}
-	@Override
-	public void keyReleased(KeyEvent e){}
-	@Override
-	public void keyTyped(KeyEvent e) {}
+	public int getIndex()
+	{
+		return index;
+	}
 	
 }

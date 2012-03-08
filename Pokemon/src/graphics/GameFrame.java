@@ -12,8 +12,11 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.plaf.SliderUI;
 
 import player.PlayerPokemonList;
+import pokemon.Pokemon;
+import pokemon.PokemonData;
 import utils.ImageUtils;
 
 public class GameFrame extends JFrame implements KeyListener{
@@ -21,6 +24,7 @@ public class GameFrame extends JFrame implements KeyListener{
 	BufferedImage icon;
 	JPanel currentRoom;
 	private GameFrame(){
+		//currentRoom = new PokemonStatusTest(new Pokemon(PokemonData.Pidgey,2));
 		currentRoom = new PokemonListFrame();
 		//currentRoom = new PokedexTest();
 		add(currentRoom);
@@ -29,40 +33,56 @@ public class GameFrame extends JFrame implements KeyListener{
 		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
 		setTitle("Pokemon Isoft");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(640,480);
+		setSize(490,350);
+		setResizable(false);
+		setFocusable(true);
+		addKeyListener(this);
 		setVisible(true);
 	}
 	public static GameFrame getGameFrame()
 	{
 	    return mGameFrame;
 	}
-	public void changeRoom(RoomEnum room)
+	public void gotoPokemonStatus(Pokemon pokemon, int index)
 	{
-	    if(room == RoomEnum.POKEDEX)
-	    {
-		this.remove(currentRoom);
-		currentRoom.setFocusable(true);
-		this.add(currentRoom);
-		this.repaint();
-	    }
-	    else if(room == RoomEnum.POKEMONLIST)
-	    {
-		this.remove(currentRoom);
-		currentRoom = new PokemonListFrame();
-		this.add(currentRoom);
-		this.repaint();
-	    }
+		if(currentRoom instanceof PokemonListFrame){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+			}
+			currentRoom.setFocusable(false);
+			remove(currentRoom);
+			currentRoom = new PokemonStatusTest(pokemon,index);
+			add(currentRoom);
+			currentRoom.setFocusable(true);
+			setVisible(true);
+		}
 	}
+	public void goBack()
+	{
+		if(currentRoom instanceof PokemonStatusTest){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+			}
+			remove(currentRoom);
+			int index = ((PokemonStatusTest)currentRoom).getIndex();
+			currentRoom = new PokemonListFrame(index);
+			add(currentRoom);
+			currentRoom.setFocusable(true);
+			setVisible(true);
+		}
+	}
+	public void startBattle()
+	{
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-		if(keyCode == 'P')
+		if(currentRoom instanceof Room)
 		{
-			changeRoom(RoomEnum.POKEDEX);
-		}
-		else if(keyCode == 'L')
-		{
-			changeRoom(RoomEnum.POKEMONLIST);
+			Room room = (Room)currentRoom;
+			room.keyAction(e);
 		}
 	}
 	@Override
