@@ -9,7 +9,7 @@ import pokemon.Pokemon;
 import pokemon.PokemonData;
 
 public class PlayerPokemonList {
-    private List<Pokemon> pokemonList = new LinkedList<Pokemon>();
+    private List<Pokemon> pokemonList = new ArrayList<Pokemon>();
     private static final PlayerPokemonList mPlayerPokemonList = 
 	    new PlayerPokemonList(new Pokemon[]
 	    	{
@@ -66,4 +66,11 @@ public class PlayerPokemonList {
     {
     	return pokemonList.size();
     }
+
+	public void switchPokemon(int i, int j) {
+		Pokemon pi = pokemonList.get(i);
+		Pokemon pj = pokemonList.get(j);
+		pokemonList.set(i, pj);
+		pokemonList.set(j, pi);
+	}
 }

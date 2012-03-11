@@ -17,8 +17,9 @@ import fonts.BitmapFont;
 import fonts.DialogFont;
 import fonts.PokemonListFont;
 import graphics.AlignedText;
+import graphics.Room;
 
-public class PokedexTest extends JPanel implements KeyListener {
+public class PokedexTest extends JPanel implements Room {
 	private int xf = 12, yf = 20;
 	private boolean inPokedexList = true;
 	private PokemonListFont pokedexFontSmall;
@@ -44,7 +45,6 @@ public class PokedexTest extends JPanel implements KeyListener {
 		// }
 
 		this.setFocusable(true);
-		this.addKeyListener(this);
 		this.backgroundList = ImageUtils.getWdirImage("/images/fondoPokedex.png");
 		this.arrow = ImageUtils.getWdirImage("/images/cursorPokedex.png");
 		this.shownPokemon = new LinkedList<PokedexData>();
@@ -89,7 +89,8 @@ public class PokedexTest extends JPanel implements KeyListener {
 
 	}
 
-	public void keyPressed(KeyEvent e) {
+	
+	public void keyAction(KeyEvent e) {
 		
 		//////////////////////////////////////////////
 		/*
@@ -201,9 +202,4 @@ public class PokedexTest extends JPanel implements KeyListener {
 		repaint();
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {}
-
-	@Override
-	public void keyTyped(KeyEvent e) {}
 }
