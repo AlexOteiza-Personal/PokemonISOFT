@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.text.StyleConstants.CharacterConstants;
 
-import exceptions.ImageInvalidSizeException;
 
 public class DialogFont extends BitmapFont {
 	private static final FontChar[] charmap = { new FontChar(' ', 6), new FontChar('!', 4),

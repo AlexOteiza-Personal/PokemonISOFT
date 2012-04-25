@@ -13,7 +13,7 @@ public class PlayerPokemonList {
     private static final PlayerPokemonList mPlayerPokemonList = 
 	    new PlayerPokemonList(new Pokemon[]
 	    	{
-	    		new Pokemon(PokemonData.Abra,1),
+	    		new Pokemon(PokemonData.Bulbasaur,8),
 	    		new Pokemon(PokemonData.Arcanine,2),
 	    		new Pokemon(PokemonData.Bulbasaur, 2),
 	    		new Pokemon(PokemonData.Diglett,2),

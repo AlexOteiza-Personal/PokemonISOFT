@@ -3,10 +3,9 @@ package pokemon.attacks;
 import pokemon.Type;
 
 public class Attack {
-	
-	AttackData attackData;
-	int currentPP;
-	int maxPP;
+	private AttackData attackData;
+	private int currentPP;
+	private int maxPP;
 	
 	public Attack(AttackData attackData)
 	{
@@ -41,7 +40,13 @@ public class Attack {
 	public Type getType() {
 		return attackData.getType();
 	}
-	public StatusEffect getEnemyStatusEffect() {
-		return attackData.getEnemyStatusEffect();
+	public AttackEffect getAttackEffect() {
+		return attackData.getAttackEffect();
+	}
+	public boolean isSelfAttack(){
+		return attackData.isSelfAttack();
+	}
+	public AttackSpeed getAttackSpeed(){
+		return attackData.getAttackSpeed();
 	}
 }

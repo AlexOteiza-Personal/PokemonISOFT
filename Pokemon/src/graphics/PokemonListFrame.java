@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import exceptions.ImageInvalidSizeException;
-import exceptions.UnsupportedCharException;
 import fonts.BitmapFont;
 import fonts.DialogFont;
 import fonts.PokemonListFont;
@@ -24,7 +22,7 @@ import fonts.PokemonListFont;
 import player.PlayerPokemonList;
 import pokemon.Pokemon;
 
-public class PokemonListFrame extends JPanel implements Room{
+public class PokemonListFrame extends Room{
 	private BitmapFont pokemonNameFont;
 	private int pokemonIndex;
 	private int pokemonListSize;
@@ -52,6 +50,7 @@ public class PokemonListFrame extends JPanel implements Room{
 	private BufferedImage pokemonBoxSwitch;
 	private BufferedImage firstPokemonSwitch;
 	private BufferedImage firstPokemonSwitchSelect;
+	private static int menuIndex = 2;
 
 	public PokemonListFrame()
 	{
@@ -84,8 +83,6 @@ public class PokemonListFrame extends JPanel implements Room{
 		this.arrow = ImageUtils.getWdirImage("/images/pokemonlist/arrow.png");	
 		this.pokemonNameFont = new PokemonListFont(ImageUtils.getWdirImage("/images/font_pokemonlist.png"));
 		this.switchIndex = 0;
-		
-		this.setFocusable(true);
 	}
 
 	public void paint(Graphics g) {
@@ -153,7 +150,7 @@ public class PokemonListFrame extends JPanel implements Room{
 		
 	}
 
-	public void keyAction(KeyEvent e) {
+	public void keyPressedAction(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if(keyCode == KeyEvent.VK_UP)
 		{
@@ -272,8 +269,23 @@ public class PokemonListFrame extends JPanel implements Room{
 				inSwitchMode = false;
 				repaint();
 			}
+			else
+			{
+				GameFrame.getGameFrame().goBack();
+			}
 		}
 		System.out.println("Pokemon Index: "+pokemonIndex+"\nBox Index: "+boxSelectIndex);
+	}
+
+	public int getMenuIndex() {
+		return menuIndex;
+	}
+
+
+	@Override
+	protected void keyReleasedAction(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

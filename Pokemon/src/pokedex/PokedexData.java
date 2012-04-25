@@ -1,7 +1,7 @@
 package pokedex;
 
+import images.ImageData;
 import pokemon.*;
-import pokemon.imagedata.ImageData;
 
 public class PokedexData {
 	private PokemonData pokemonData;

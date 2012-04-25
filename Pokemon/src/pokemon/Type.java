@@ -18,13 +18,14 @@ public enum Type {
 	PSYCHIC("Psiquico"),
 	BUG("Bicho"),
 	ROCK("Roca"),
-	GHOST("Fantasma");
+	GHOST("Fantasma"),
+	DRAGON("Dragon");
 	private String name;
 	private Type(String name) {
 		this.name = name;
 	}
-	@Override
+	/*@Override
 	public String toString() {
 		return this.name;
-	}
+	}*/
 }

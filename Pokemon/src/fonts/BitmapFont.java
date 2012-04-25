@@ -1,5 +1,7 @@
 package fonts;
 
+import images.ImageInvalidSizeException;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MenuContainer;
@@ -17,9 +19,6 @@ import java.util.Map;
 import javax.accessibility.Accessible;
 
 import org.omg.CORBA.FREE_MEM;
-
-import exceptions.ImageInvalidSizeException;
-import exceptions.UnsupportedCharException;
 
 /**
  * 
@@ -137,11 +136,11 @@ public abstract class BitmapFont {
 				try {
 					Image character = imagesAlphabet.get(line.charAt(j));
 					if (character == null)
-						throw new UnsupportedCharException(line.charAt(j));
+						throw new UnsupportedCharacterException(line.charAt(j));
 					g.drawImage(character, x, y, null);
 					x += character.getWidth(null);
 				}
-				catch (UnsupportedCharException ex) {
+				catch (UnsupportedCharacterException ex) {
 					ex.printStackTrace();
 				}
 			}

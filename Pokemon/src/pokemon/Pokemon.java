@@ -1,7 +1,6 @@
 package pokemon;
 
-import pokemon.attacks.AttackList;
-import pokemon.imagedata.ImageData;
+import images.ImageData;
 
 /**
  * 
@@ -16,8 +15,11 @@ public class Pokemon {
 
 	private PokemonData data;
 	private String nickname = null;
+	private PokemonStatus status;
+	private int currentHp;
+	private boolean debilitated;
 	private PokemonStats stats;
-	private AttackList attacks;
+	private PokemonAttacks attacks;
 	private int level;
 
 	/**
@@ -33,8 +35,10 @@ public class Pokemon {
 	public Pokemon(PokemonData data, int level) {
 		this.data = data;
 		this.level = level;
+		this.status = PokemonStatus.NORMAL;
 		this.stats = new PokemonStats(level, data.getBaseStats());
-		this.attacks = new AttackList(data.getLearnAttackList(), level);
+		this.currentHp = stats.getHp();
+		this.attacks = new PokemonAttacks(data.getLearnAttackList(), level);
 	}
 
 	/**
@@ -43,7 +47,7 @@ public class Pokemon {
 	@Override
 	public String toString() {
 		return "Pokemon id:" + data.getId() + "\n" + "Nombre: " + data.getName() + "\nTipo: "
-				+ data.getType1() + "/" + data.getType2();
+				+ data.getType1() + "/" + data.getType2() + "\nHp: "+stats.getHp();
 	}
 
 	/*
@@ -109,8 +113,8 @@ public class Pokemon {
 		return this.stats;
 	}
 
-	public Type[] getPokemonType() {
-		return new Type[] { this.data.getType1(), this.data.getType2() };
+	public PokemonType getPokemonType() {
+		return data.getType();
 	}
 
 	/*
@@ -146,5 +150,37 @@ public class Pokemon {
 		this.level--;
 		this.stats.setNewStats(level, this.data.getBaseStats());
 	}
+	public void setStatus(PokemonStatus status)
+	{
+		this.status = status;
+	}
 
+	public boolean isDebilitated()
+	{
+		return debilitated;
+	}
+	
+	public int getCurrentHp()
+	{
+		return currentHp;
+	}
+	public PokemonAttacks getAttacks()
+	{
+		return attacks;
+	}
+	public PokemonStatus getStatus()
+	{
+		return status;
+	}
+	public String getNickname()
+	{
+		return nickname;
+	}
+	public void dealDamage(int damage)
+	{
+		if(damage>currentHp)
+			currentHp = 0;
+		else
+			currentHp -= damage;
+	}
 }

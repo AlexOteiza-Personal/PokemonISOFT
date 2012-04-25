@@ -2,8 +2,6 @@ package fonts;
 
 import java.awt.image.BufferedImage;
 
-import exceptions.ImageInvalidSizeException;
-
 public class PokemonListFont extends BitmapFont {
     private static final FontChar[] charmap = { 
     	new FontChar(' ', 5),

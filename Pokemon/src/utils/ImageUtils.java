@@ -8,7 +8,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import exceptions.ImageInvalidSizeException;
 
 public class ImageUtils {
     public static BufferedImage getWdirImage(String dir)

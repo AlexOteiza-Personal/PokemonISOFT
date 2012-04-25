@@ -1,12 +1,13 @@
 package graphics.betatesting;
 
-import exceptions.ImageInvalidSizeException;
-import exceptions.UnsupportedCharException;
+
 import fonts.BitmapFont;
 import fonts.DialogFont;
 import graphics.AlignedText;
 import graphics.GameFrame;
 import graphics.Room;
+
+import images.BattleImage;
 
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -28,11 +29,10 @@ import javax.swing.text.StyledEditorKit.FontSizeAction;
 import pokemon.Pokemon;
 import pokemon.PokemonData;
 import pokemon.PokemonStats;
-import pokemon.imagedata.BattleImage;
 import utils.ImageUtils;
 
 
-public class PokemonStatusTest extends JPanel implements Room{
+public class PokemonStatusTest extends Room{
     	private BitmapFont statusFont;
 	private static Point pokemonOrigin = new Point(20, 4);
 	private Image stats;
@@ -41,6 +41,7 @@ public class PokemonStatusTest extends JPanel implements Room{
 	private int index;
 	private AlignedText statsText = new AlignedText(AlignedText.RIGHT_ALIGN);
 	public PokemonStatusTest(Pokemon pokemon,int index){
+		super();
 		this.index = index;
 		this.pokemon = pokemon;
 		this.setFocusable(true);
@@ -71,9 +72,8 @@ public class PokemonStatusTest extends JPanel implements Room{
 		
 	}
 
-	public void keyAction(KeyEvent e) {
+	public void keyPressedAction(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		System.out.println("wtf");
 		if(keyCode == 'X')
 		{
 			GameFrame gf = (GameFrame)getTopLevelAncestor();
@@ -83,6 +83,11 @@ public class PokemonStatusTest extends JPanel implements Room{
 	public int getIndex()
 	{
 		return index;
+	}
+	@Override
+	protected void keyReleasedAction(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
