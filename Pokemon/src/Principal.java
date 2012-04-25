@@ -33,7 +33,7 @@ public class Principal {
     public static void main(String[] args) throws Exception
     {
     	//new LoginFrame();
-    	GameFrame gf = GameFrame.getGameFrame();
+    	//GameFrame gf = GameFrame.getGameFrame();
     	//ArrayList<Pokemon> pkl = new ArrayList<Pokemon>();
     	//pkl.add(null);
     	
@@ -44,7 +44,7 @@ public class Principal {
     	//hash.con
     	//PokemonType pkt2 = new PokemonType(Type.BUG, Type.DRAGON);
     	//System.out.println(hash.get(pkt2));*
-    	//new Battle(new Pokemon(PokemonData.Bulbasaur,4));
+    	new Battle(new Pokemon(PokemonData.Bulbasaur,4));
     	
     
      
