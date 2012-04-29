@@ -54,7 +54,7 @@ public class DialogFont extends BitmapFont {
 	 * @throws ImageInvalidSizeException
 	 */
 	public DialogFont(BufferedImage bitmapImage) {
-		super(bitmapImage, charmap, charsizex, charsizey);
+		super(bitmapImage, charmap, charsizex, charsizey,15);
 	}
 
 	public DialogFont(BufferedImage bitmapImage, int align) {

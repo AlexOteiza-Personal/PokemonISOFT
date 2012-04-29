@@ -1,5 +1,6 @@
 package pokemon;
 
+import sounds.SoundData;
 import images.ImageData;
 
 /**
@@ -182,5 +183,8 @@ public class Pokemon {
 			currentHp = 0;
 		else
 			currentHp -= damage;
+	}
+	public SoundData getSoundData(){
+		return data.getSoundData();
 	}
 }

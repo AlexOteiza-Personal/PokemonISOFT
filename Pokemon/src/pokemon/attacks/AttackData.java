@@ -1,17 +1,20 @@
 package pokemon.attacks;
 
+import javax.sound.sampled.Clip;
+
 import pokemon.Type;
 
 public enum AttackData {
-	SCRATCH("Arañazo",40,100,Type.NORMAL,35),
-	GROWL("Gruñido",0,0,Type.NORMAL,40,new AttackEffect(StatsEffect.ATTACK_DOWN,true)),
-	TACKLE("Placaje",35,95,Type.NORMAL,35), 
-	LEER("Latigo",0,0,Type.NORMAL,30,new AttackEffect(StatsEffect.DEFENSE_DOWN,true)),
-	QUICK_ATTACK("At. Rapido",40,0,Type.NORMAL,20,AttackSpeed.FAST);
+	SCRATCH("ARAÑAZO",40,100,Type.NORMAL,35),
+	GROWL("GRUÑIDO",0,0,Type.NORMAL,40,new AttackEffect(StatsEffect.ATTACK_DOWN,true)),
+	TACKLE("PLACAJE",35,95,Type.NORMAL,35), 
+	LEER("LÁTIGO",0,0,Type.NORMAL,30,new AttackEffect(StatsEffect.DEFENSE_DOWN,true)),
+	QUICK_ATTACK("AT. RÁPIDO",40,0,Type.NORMAL,20,AttackSpeed.FAST);
 	private boolean selfAttack;
 	private String name;
 	private int power;
 	private int accuracy;
+
 	private Type type;
 	private int iniPP;
 	private AttackEffect attackEffect;
@@ -45,6 +48,7 @@ public enum AttackData {
 	{
 		this(name, power, accuracy, type, iniPP, attackEffect, AttackSpeed.NORMAL, selfAttack);
 	}
+	
 	private AttackData(String name, int power, int accuracy, Type type, int iniPP, AttackEffect attackEffect, AttackSpeed attackSpeed ,boolean selfAttack)
 	{
 		this.name = name;

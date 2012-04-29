@@ -1,6 +1,10 @@
 package sounds;
 
+import graphics.Settings;
+
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.Control;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 
 import utils.AudioUtils;
@@ -38,10 +42,21 @@ public enum Music{
 	}
 	public void loop()
 	{
+		if(Settings.getSound()==false)
+			return;
 		clip.loop(-1);
 	}
 	public void stop()
 	{
+		if(Settings.getSound()==false)
+			return;
 		clip.stop();
+	}
+	public void setVolume(float volume){
+		FloatControl vol = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		vol.setValue(volume);
+	}
+	public float getVolume(){
+		return ((FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN)).getValue();
 	}
 }

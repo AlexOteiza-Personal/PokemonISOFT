@@ -1,26 +1,12 @@
-import java.awt.*;
-import java.awt.image.ImageConsumer;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.TreeMap;
-
-import battle.Battle;
-
-import fonts.BitmapFont;
-
 import graphics.GameFrame;
-import graphics.betatesting.LoginFrame;
-import graphics.betatesting.PokemonStatusTest;
-import player.PlayerPokemonList;
-import pokemon.*;
-import utils.ImageUtils;
+import graphics.login.LoginFrame;
+import images.ImageInvalidSizeException;
+
+import java.io.IOException;
+
+import pokemon.Pokemon;
+import pokemon.PokemonData;
+import battle.Battle;
 
 public class Principal {
 
@@ -33,9 +19,9 @@ public class Principal {
     public static void main(String[] args) throws Exception
     {
     	//new LoginFrame();
-    	//GameFrame gf = GameFrame.getGameFrame();
+    	GameFrame gf = GameFrame.getGameFrame();
     	//ArrayList<Pokemon> pkl = new ArrayList<Pokemon>();
-    	//pkl.add(null);
+    	//pkl.add(null);  5
     	
     	//int evasion = 110;
     	//int accuracy = 100;
@@ -44,7 +30,7 @@ public class Principal {
     	//hash.con
     	//PokemonType pkt2 = new PokemonType(Type.BUG, Type.DRAGON);
     	//System.out.println(hash.get(pkt2));*
-    	new Battle(new Pokemon(PokemonData.Bulbasaur,4));
+    	//new Battle(new Pokemon(PokemonData.Bulbasaur,13));
     	
     
      

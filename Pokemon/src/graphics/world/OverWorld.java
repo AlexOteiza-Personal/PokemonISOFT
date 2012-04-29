@@ -76,7 +76,7 @@ public class OverWorld extends Room {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paintRoom(Graphics g) {
 		super.paint(g);
 		((Graphics2D)g).scale(2, 2);
 		for (int i = 0; i < screenImages.length; i++) {

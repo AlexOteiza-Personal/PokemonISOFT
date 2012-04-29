@@ -1,4 +1,4 @@
-package graphics.betatesting;
+package graphics.login;
 
 import graphics.GameFrame;
 
@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.*;
@@ -36,7 +37,8 @@ public class LoginFrame extends JFrame {
 		// Create a tabbed pane
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("          Usuario Registrado          ", panel1);
-		tabbedPane.addTab("                      Invitado                     ", panel2);
+		tabbedPane.addTab(
+				"                      Invitado                     ", panel2);
 		topPanel.add(tabbedPane, BorderLayout.CENTER);
 	}
 
@@ -73,18 +75,16 @@ public class LoginFrame extends JFrame {
 					// chekar si el usuario escrbio el nombre de usuario y pw
 					if (txtUser.getText().length() > 0 && txtPass.getText().length() > 0) {
 						// Si el usuario si fue validado correctamente
-						if (validarUsuario(txtUser.getText(), txtPass.getText())) // enviar
-																					// datos
-																					// a
-																					// validar
+						if (validarUsuario(txtUser.getText(), txtPass.getText())) 
 						{
 							// Codigo para mostrar la ventana principal
 							setVisible(false);
 							// ARRANCAR EL JUEGO
 							GameFrame.getGameFrame();
 						} else {
-							JOptionPane.showMessageDialog(null,
-									"El nombre de usuario y/o contrasenia no son validos.");
+							JOptionPane
+									.showMessageDialog(null,
+											"El nombre de usuario y/o contrasenia no son validos.");
 							txtUser.setText(""); // limpiar campos
 							txtPass.setText("");
 
@@ -92,8 +92,9 @@ public class LoginFrame extends JFrame {
 						}
 
 					} else {
-						JOptionPane.showMessageDialog(null, "Debe escribir nombre de usuario y contraseña.\n"
-								+ "NO puede dejar ningun campo vacio");
+						JOptionPane.showMessageDialog(null,
+								"Debe escribir nombre de usuario y contraseña.\n"
+										+ "NO puede dejar ningun campo vacio");
 					}
 
 				} catch (Exception e) {
@@ -127,8 +128,9 @@ public class LoginFrame extends JFrame {
 																				// de
 																				// la
 																				// pantalla
-		setLocation((tamPantalla.width - tamFrame.width) / 2, (tamPantalla.height - tamFrame.height) / 2); // para
-																											// posicionar
+		setLocation((tamPantalla.width - tamFrame.width) / 2,
+				(tamPantalla.height - tamFrame.height) / 2); // para
+																// posicionar
 		setVisible(true); // Hacer visible al frame
 
 	} // fin de constructor
@@ -137,13 +139,14 @@ public class LoginFrame extends JFrame {
 	boolean validarUsuario(String elUsr, String elPw) throws IOException {
 		try {
 			// conectamos con la base de datos
-			Connection unaConexion = 
-			DriverManager.getConnection("jdbc:mysql://li-001.servers.agrs700.com/pokemon", "root","vaquero1992700");
+			Connection unaConexion = DriverManager.getConnection(
+					"jdbc:mysql://li-001.servers.agrs700.com/pokemon", "root",
+					"vaquero1992700");
 			// Preparamos la consulta
 			Statement instruccionSQL = unaConexion.createStatement();
 			ResultSet resultadosConsulta = instruccionSQL
-					.executeQuery("SELECT * FROM user WHERE username='" + elUsr + "' AND password='"
-							+ elPw + "'");
+					.executeQuery("SELECT * FROM user WHERE username='" + elUsr
+							+ "' AND password='" + elPw + "'");
 
 			if (resultadosConsulta.first()) // si es valido el primer reg. hay
 											// una fila, tons el usuario y su pw
@@ -170,6 +173,32 @@ public class LoginFrame extends JFrame {
 
 		panel2.add(btnJugar);
 		panel2.add(btnRegistrarse);
+		ActionListener listenerJugar = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				// terminar el programa
+				GameFrame.getGameFrame();
+			}
+		};
+		btnJugar.addActionListener(listenerJugar);
+		final JFrame frame = this;
+		ActionListener listenerRegistro = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				// terminar el programa
+				
+				Registro registro;
+				try {
+					registro = new Registro(frame);
+					registro.setVisible(true);
+
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null,"Conexion fallida, puede que no tenga conexion a internet intentelo de nuevo");
+					
+					e.printStackTrace();
+				}
+				
+			}
+		};
+		btnRegistrarse.addActionListener(listenerRegistro);
 	}
 
 }

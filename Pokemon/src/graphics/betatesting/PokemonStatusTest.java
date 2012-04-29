@@ -48,9 +48,8 @@ public class PokemonStatusTest extends Room{
 		this.stats = ImageUtils.getWdirImage("/images/status_1x.PNG");
 	}
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintRoom(Graphics g) {
 		// TODO Auto-generated method 
-		super.paintComponent(g);
 		((Graphics2D)g).scale(2, 2);
 		g.drawImage(this.stats, 0, 0, null);
 		g.drawImage (pokemon.getImageData().getImgFront().getImage(),20,4, null);

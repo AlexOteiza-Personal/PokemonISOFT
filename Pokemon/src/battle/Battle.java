@@ -12,14 +12,17 @@ import pokemon.*;
 import pokemon.attacks.*;
 
 public class Battle {
-	public static final int ATTACK_MODIFIER = 2;
-	public static final int DEFENSE_MODIFIER = 2;
-	public static final int SPEED_MODIFIER = 2;
-	public static final int ACCURACY_MODIFIER = 5;
-	public static final int EVASION_MODIFIER = 5;
+	public static final int POKEMON_APPEAR = 1;
+	public static final int PLAYER_SEND_POKEMON = 2;
+	
+	public static final int SELECT_ACTION = 10;
+	private static final int ESCAPE_FAIL = 20;
+	private static final int ESCAPE_SUCESS = 21;
+
 	
 	private boolean playerPokemonConfused=false;
 	private boolean enemyPokemonConfused=false;
+	private int escapeTries = 0;
 	
 	private BufferedImage playerImage;
 	private PlayerPokemonList playerPokemonList;
@@ -38,7 +41,7 @@ public class Battle {
 		enemyPokemon = new BattlePokemon(enemy,false);
 		turn = new Turn(playerPokemon, null, enemyPokemon, null);
 		randomizer = new Random();
-		test();
+		//test();
 	}
 	public void test() throws NumberFormatException, IOException{
 		
@@ -112,7 +115,7 @@ public class Battle {
 		}
 	}
 
-	public AttackResult attack(Attack atk,BattlePokemon bAttacker,BattlePokemon bDeffender)
+	private AttackResult attack(Attack atk,BattlePokemon bAttacker,BattlePokemon bDeffender)
 	{
 		Pokemon attacker = bAttacker.getPokemon();
 		Pokemon deffender = bDeffender.getPokemon();
@@ -316,6 +319,62 @@ public class Battle {
 		}
 		else
 			System.out.println("ups");
+	}
+	public Pokemon getPlayerPokemon() {
+		return playerPokemon.getPokemon();
+	}
+	public Pokemon getEnePokemon() {
+		return enemyPokemon.getPokemon();
+	}
+	public String getBattleStart(){
+		return "¡Un "+enemyPokemon.getPokemon().getName()+" salvaje aparecio!";
+	}
+	public String getDialog(int dialog) {
+		String rDialog = "";
+		switch(dialog)
+		{
+		case POKEMON_APPEAR:rDialog="¡Un "+ enemyPokemon.getPokemon().getName() +" salvaje!";break;
+		case PLAYER_SEND_POKEMON:rDialog="¡Adelante, "+playerPokemon.getPokemon().getName() + "!";break;
+		case SELECT_ACTION:rDialog="¿Qué deberia hacer\n"+playerPokemon.getPokemon().getName() +"?";break;
+		case ESCAPE_SUCESS:rDialog="¡Escapaste sano y salvo!";break;
+		case ESCAPE_FAIL:rDialog="¡No has podido escapar!";break;
+		default:rDialog="";break;
+		}
+		return rDialog;
+	}
+	/*
+	 * Formula para escape:
+	 *      Pl.Pokemon speed level  x  32
+	 * F = ------------------------------- + 30 x Escape trys
+	 *       En. Pokemon speed level
+	 *
+	 * if f > 255 then escapes
+	 *                          F
+	 * else escape percentage= --- 
+	 *                         256
+	 * 
+	 * 
+	 */
+	public boolean escape() {
+		escapeTries++;
+		int b = enemyPokemon.getTmpStats().getSpeed()/4;
+		int f = ((playerPokemon.getTmpStats().getSpeed()*32)/
+				b)+(15*escapeTries);
+		System.out.println(playerPokemon.getTmpStats().getSpeed());
+		System.out.println(enemyPokemon.getTmpStats().getSpeed());
+		System.out.println(f);
+		if(f<255)
+		{
+			double probability = (double)f/256;
+			if(randomizer.nextInt(100)<=(probability*100))
+				return true;
+			else
+				return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 }

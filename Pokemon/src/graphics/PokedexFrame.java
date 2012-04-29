@@ -50,9 +50,7 @@ public class PokedexFrame extends Room {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method
-		super.paintComponent(g);
+	public void paintRoom(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.scale(2, 2);// escala de la pantalla usar la misma
 		g.drawImage(this.backgroundList, 0, 0, null);

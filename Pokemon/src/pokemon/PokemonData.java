@@ -4,24 +4,27 @@ import images.ImageData;
 
 import java.io.IOException;
 
+import javax.sound.sampled.Clip;
+
 import pokemon.attacks.AttackData;
 import pokemon.attacks.LearnAttackList;
+import sounds.SoundData;
 /**
  * Contains non-modificable data of the Pokemon
  * @author Alejandro
  * @see Pokemon
  */
 public enum PokemonData {
-	Bulbasaur(1,"BULBASAUR",Type.NORMAL ,Type.POISON,LearnAttackList.Bulbasaur,new PokemonStats(45,49,49,45),new ImageData(null,"/images/pokemon/front/001.png","/images/pokemon/back/001.png")),
-	Ekans	 (2,"EKANS",Type.POISON,null,LearnAttackList.Ekans,new PokemonStats(35,60,44,55),new ImageData(null,"/images/pokemon/front/002.png","/images/pokemon/back/002.png")),
-	Diglett  (3,"DIGLETT",Type.GROUND,null,LearnAttackList.Diglett,new PokemonStats(10,55,25,95),new ImageData(null,"/images/pokemon/front/003.png","/images/pokemon/back/003.png")),
-	Rattata  (4,"RATTATA",Type.NORMAL,null,LearnAttackList.Rattata,new PokemonStats(30,56,35,72),new ImageData(null,"/images/pokemon/front/004.png","/images/pokemon/back/004.png")),
-	Weedle	 (5,"WEEDLE",Type.BUG,Type.POISON,LearnAttackList.Weedle,new PokemonStats(40,35,30,50),new ImageData(null,"/images/pokemon/front/005.png","/images/pokemon/back/005.png")),
-	Abra	 (6,"ABRA",Type.PSYCHIC,null,LearnAttackList.Abra,new PokemonStats(25,20,15,90),new ImageData(null,"/images/pokemon/front/006.png","/images/pokemon/back/006.png")),
-	Dodrio	 (7,"DODRIO",Type.NORMAL,Type.FLYING,LearnAttackList.Dodrio,new PokemonStats(60,110,70,100),new ImageData(null,"/images/pokemon/front/007.png","/images/pokemon/back/007.png")),
-	Pidgey	 (8,"PIDGEY",Type.NORMAL,Type.FLYING,LearnAttackList.Pidgey,new PokemonStats(40,45,40,56),new ImageData(null,"/images/pokemon/front/008.png","/images/pokemon/back/008.png")),
-	Arcanine (9,"ARCANINE",Type.FIRE,null,LearnAttackList.Arcanine,new PokemonStats(90,110,80,95),new ImageData(null,"/images/pokemon/front/009.png","/images/pokemon/back/009.png")),
-	Mew	     (10,"MEW",Type.PSYCHIC,null,LearnAttackList.Mew,new PokemonStats(100,100,100,100),new ImageData(null,"/images/pokemon/front/010.png","/images/pokemon/back/010.png"));
+	Bulbasaur(1,"BULBASAUR",Type.NORMAL ,Type.POISON,LearnAttackList.Bulbasaur,new PokemonStats(45,49,49,45),ImageData.getInstance(ImageData.BULBASAUR),SoundData.getInstance(SoundData.BULBASAUR)),
+	Ekans	 (2,"EKANS",Type.POISON,null,LearnAttackList.Ekans,new PokemonStats(35,60,44,55),ImageData.getInstance(ImageData.EKANS)),
+	Diglett  (3,"DIGLETT",Type.GROUND,null,LearnAttackList.Diglett,new PokemonStats(10,55,25,95),ImageData.getInstance(ImageData.DIGLETT)),
+	Rattata  (4,"RATTATA",Type.NORMAL,null,LearnAttackList.Rattata,new PokemonStats(30,56,35,72),ImageData.getInstance(ImageData.RATTATA)),
+	Weedle	 (5,"WEEDLE",Type.BUG,Type.POISON,LearnAttackList.Weedle,new PokemonStats(40,35,30,50),ImageData.getInstance(ImageData.WEEDLE)),
+	Abra	 (6,"ABRA",Type.PSYCHIC,null,LearnAttackList.Abra,new PokemonStats(25,20,15,90),ImageData.getInstance(ImageData.ABRA)),
+	Dodrio	 (7,"DODRIO",Type.NORMAL,Type.FLYING,LearnAttackList.Dodrio,new PokemonStats(60,110,70,100),ImageData.getInstance(ImageData.DODRIO)),
+	Pidgey	 (8,"PIDGEY",Type.NORMAL,Type.FLYING,LearnAttackList.Pidgey,new PokemonStats(40,45,40,56),ImageData.getInstance(ImageData.PIDGEY)),
+	Arcanine (9,"ARCANINE",Type.FIRE,null,LearnAttackList.Arcanine,new PokemonStats(90,110,80,95), ImageData.getInstance(ImageData.ARCANINE)),
+	Mew	     (10,"MEW",Type.PSYCHIC,null,LearnAttackList.Mew,new PokemonStats(100,100,100,100), ImageData.getInstance(ImageData.MEW));
 	
 	/** The Pokemon id */
 	private int id;
@@ -36,6 +39,8 @@ public enum PokemonData {
 	/** Pokemon Imagedata containing images */
 	private ImageData imageData;
 	
+	private SoundData soundData;
+	
 	/**
 	 * Creates a new Pokemon data with the given values
 	 * @param id Pokemon id, an integer greater than 0
@@ -46,12 +51,17 @@ public enum PokemonData {
 	 */
 	private PokemonData(int id, String name, Type type1, Type type2, LearnAttackList learnAttackList ,
 			PokemonStats baseStats,ImageData imageData){
+		this(id,name,type1,type2,learnAttackList,baseStats,imageData,null);
+	}
+	private PokemonData(int id, String name, Type type1, Type type2, LearnAttackList learnAttackList ,
+			PokemonStats baseStats,ImageData imageData, SoundData soundData){
 		this.id = id;
 		this.name = name;
 		this.type = new PokemonType(type1,type2);
 		this.learnAttackList = learnAttackList;
 		this.baseStats = baseStats;
 		this.imageData = imageData;
+		this.soundData = soundData;
 	}
 
 	/**
@@ -119,5 +129,8 @@ public enum PokemonData {
 	
 	public LearnAttackList getLearnAttackList() {
 		return learnAttackList;
+	}
+	public SoundData getSoundData(){
+		return soundData;
 	}
 }

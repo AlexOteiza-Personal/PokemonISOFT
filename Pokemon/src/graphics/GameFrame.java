@@ -1,10 +1,14 @@
 package graphics;
 
 
+import graphics.battle.BattleFrame;
 import graphics.betatesting.FontTest;
 import graphics.betatesting.PokemonStatusTest;
 import graphics.world.OverWorld;
 
+import java.awt.Container;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -23,27 +27,38 @@ import pokemon.Pokemon;
 import pokemon.PokemonData;
 import utils.AudioUtils;
 import utils.ImageUtils;
+import utils.ThreadUtils;
 
 import sounds.Music;
 
 public class GameFrame extends JFrame implements KeyListener{
     public static int WIDTH=496;
     public static int HEIGHT=384;
-    private static GameFrame mGameFrame = new GameFrame();
+    private static final GameFrame mGameFrame = new GameFrame();
     private GameMenuBar menuBar;
-    private Music backgroundMusic;
+    private static Music backgroundMusic;
 	BufferedImage icon;
-	JPanel currentRoom;
+	Room currentRoom;
+	
 	private GameFrame(){
 		menuBar = new GameMenuBar();
 		add(menuBar);
 		setJMenuBar(menuBar);
 		//currentRoom = new PokemonStatusTest(new Pokemon(PokemonData.Pidgey,2));
-		currentRoom = new OverWorld();
+		//currentRoom = new OverWorld();
 		//currentRoom = new PokedexFrame();
-		add(currentRoom);
-		backgroundMusic = Music.ROUTE_3;
-		backgroundMusic.loop();
+		Container c = getContentPane();
+		try {
+			currentRoom = new BattleFrame(new Pokemon(PokemonData.Bulbasaur,5));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		c.add(currentRoom);
+		//backgroundMusic = Music.WILD_BATTLE;
+		//backgroundMusic = Music.ROUTE_3;
+		playMusic();
+		System.out.println(currentRoom);
 		icon = ImageUtils.getWdirImage("/images/icon.png");
 		setIconImage(icon);
 		//add(new PokemonListFrame(PlayerPokemonList.getPlayerpokemonlist()));
@@ -143,18 +158,33 @@ public class GameFrame extends JFrame implements KeyListener{
 			room.keyReleased(e);
 		}
 	}
-	public void changeMusic()
+	public static void stopMusic(Music music)
 	{
-		/*TODO: Cambiar la musica
 		backgroundMusic.stop();
-		try {
-			backgroundMusic = AudioUtils.getAudioWdir();
-			backgroundMusic.loop(-1);
-		} catch (LineUnavailableException e) {
-			System.err.println("No se ha detectado ningun dispositivo de audio");
-		}*/
+	}
+	public static void stopMusicGradually(){
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				float value = -2;
+				System.out.println(value);
+				while (value>-40) {
+					value -=1f;
+					backgroundMusic.setVolume(value);
+					ThreadUtils.sleep(90);
+				}
+				backgroundMusic.stop();
+			}
+		});t.start();
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
+	public static void setMusic(Music music){
+		backgroundMusic = music;
+	}
+	public static void playMusic(){
+		if(backgroundMusic!=null)
+			backgroundMusic.loop();
+	}
 }

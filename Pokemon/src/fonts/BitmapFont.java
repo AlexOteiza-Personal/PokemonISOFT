@@ -32,6 +32,7 @@ public abstract class BitmapFont {
 	private int subImageSizeX;
 	private int subImageSizeY;
 	private int align;
+	private int nextLineOffset;
 
 	/**
 	 * 
@@ -50,11 +51,14 @@ public abstract class BitmapFont {
 	 *             character width and height
 	 */
 	public BitmapFont(BufferedImage bitmapImage, FontChar[] charmap, int subImageSizeX, int subImageSizeY) {
-		this(bitmapImage, charmap, subImageSizeX, subImageSizeY, LEFT_ALIGN);
+		this(bitmapImage, charmap, subImageSizeX, subImageSizeY, subImageSizeY, LEFT_ALIGN);
+	}
+	public BitmapFont(BufferedImage bitmapImage, FontChar[] charmap, int subImageSizeX, int subImageSizeY, int nextLineOffset) {
+		this(bitmapImage, charmap, subImageSizeX, subImageSizeY, nextLineOffset, LEFT_ALIGN);
 	}
 
 	public BitmapFont(BufferedImage bitmapImage, FontChar[] charmap, int subImageSizeX, int subImageSizeY,
-			int align) {
+			 int nextLineOffset, int align) {
 		if (bitmapImage.getHeight(null) % subImageSizeY != 0
 				|| bitmapImage.getWidth(null) % subImageSizeX != 0) {
 			try {
@@ -67,6 +71,7 @@ public abstract class BitmapFont {
 		this.align = align;
 		this.subImageSizeX = subImageSizeX;
 		this.subImageSizeY = subImageSizeY;
+		this.nextLineOffset = nextLineOffset;
 		setSubimages(bitmapImage, new CharMap(charmap));
 		charmap = null;
 	}
@@ -105,18 +110,18 @@ public abstract class BitmapFont {
 		for (int i = 0; i < text.length; i++) {
 			currentx = x;
 			drawLine(g, text[i], currentx, currenty);
-			currenty += subImageSizeY;
+			currenty += nextLineOffset;
 		}
 	}
 
 	private void drawStringRight(Graphics g, String[] text, int x, int y) {
-		// TODO
+		
 		int currentx;
 		int currenty=y;
 		for (int i = 0; i < text.length; i++) {
 			currentx = x - getTextWidth(text[i]);
 			drawLine(g,text[i],currentx,currenty);
-			currenty+=subImageSizeY;
+			currenty+=nextLineOffset;
 		}
 	}
 
@@ -126,7 +131,7 @@ public abstract class BitmapFont {
 		for (int i = 0; i < text.length; i++) {
 			currentx = x - (getTextWidth(text[i])/2);
 			drawLine(g,text[i],currentx,currenty);
-			currenty+=subImageSizeY;
+			currenty+=nextLineOffset;
 		}
 	}
 	private void drawLine(Graphics g, String line, int x, int y) {

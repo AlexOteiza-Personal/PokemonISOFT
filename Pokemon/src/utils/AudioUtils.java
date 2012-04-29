@@ -12,6 +12,7 @@ public class AudioUtils {
 	public static Clip getAudioWdir(String dir) throws LineUnavailableException
 	{
 		Clip clip = AudioSystem.getClip();
+		
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(AudioUtils.class.getResource(dir));
 			clip.open(ais);

@@ -85,7 +85,7 @@ public class PokemonListFrame extends Room{
 		this.switchIndex = 0;
 	}
 
-	public void paint(Graphics g) {
+	public void paintRoom(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.scale(2, 2);

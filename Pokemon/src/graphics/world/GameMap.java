@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import sounds.Music;
+
 import graphics.GameFrame;
 
 public class GameMap {
@@ -53,4 +55,5 @@ public class GameMap {
 		}
 		return toScreendata;
 	}
+	
 }
